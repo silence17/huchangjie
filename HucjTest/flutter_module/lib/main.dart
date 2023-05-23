@@ -1,11 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_module/grid/GridListDemo.dart';
 import 'package:flutter_module/page/HomePage.dart';
+import 'package:flutter_module/stack/stack.dart';
 
 import 'flutter2android/HomePageCallback.dart';
 import 'list/Product.dart';
 import 'list/ProductListPage.dart';
+import 'material_demo_types.dart';
 
 void main() => runApp(_createWidget(window.defaultRouteName));
 
@@ -41,6 +44,8 @@ class MyApp extends StatelessWidget {
                 Product(name: 'Chocolate chips'),
               ],
             ),
+        '/four': (context) => const GridListDemo(type: GridListDemoType.header),
+        '/five': (context) => const StackDemo()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -153,8 +153,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         //超出部分，可裁剪
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20)
-        ),
+            border: Border.all(width: 3, color: Colors.black38),
+            color: Colors.black26,
+            borderRadius: BorderRadius.circular(10)),
         //margin: const EdgeInsets.all(50),
         child: Image.asset('images/pic1.jpg'),
       ),
@@ -168,7 +169,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       SizedBox(
           width: 50,
           height: 80,
-          child: Image.network('https://scpic.chinaz.net/files/default/imgs/2023-05-18/dcd04bf152731868.jpg')),
+          child: Image.network(
+              'https://scpic.chinaz.net/files/default/imgs/2023-05-18/dcd04bf152731868.jpg')),
     ]);
   }
 }

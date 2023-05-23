@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hucj.hucjtest.dialogmanager.FiveActivity
 import com.hucj.hucjtest.flutter.FlutterExampleActivity
 import com.hucj.testlib.CommonUtil
+import io.flutter.embedding.android.FlutterActivity.withNewEngine
 
 
 class MainActivity : AppCompatActivity() {
@@ -95,11 +96,11 @@ class MainActivity : AppCompatActivity() {
             }
         findViewById<View>(R.id.flutter_btn).setOnClickListener {
 
-//            startActivity(
-//                withNewEngine()
-//                    .initialRoute("/third")
-//                    .build(this)
-//            )
+            startActivity(
+                withNewEngine()
+                    .initialRoute("/five")
+                    .build(this)
+            )
 
             //添加flutter回调
 //            val intent = FlutterExampleActivity
@@ -109,7 +110,7 @@ class MainActivity : AppCompatActivity() {
 //            intent.setClass(this, FlutterExampleActivity::class.java)
 //            startActivity(intent)
 
-            startActivity(Intent(this, FlutterExampleActivity::class.java))
+//            startActivity(Intent(this, FlutterExampleActivity::class.java))
 
         }
     }
