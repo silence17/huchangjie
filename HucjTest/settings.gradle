@@ -1,0 +1,38 @@
+//allprojects里是项目本身需要的依赖，这里基本上我们依赖的三方库。
+dependencyResolutionManagement {
+//    RepositoriesMode配置在构建中仓库如何设置，总共有三种方式：
+//    FAIL_ON_PROJECT_REPOS
+//    表示如果工程单独设置了仓库，或工程的插件设置了仓库，构建就直接报错抛出异常
+//    PREFER_PROJECT
+//    表示如果工程单独设置了仓库，就优先使用工程配置的，忽略settings里面的
+//    PREFER_SETTINGS
+//    表述任何通过工程单独设置或插件设置的仓库，都会被忽略
+
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+
+    repositories {
+        mavenCentral()
+        google()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
+
+        mavenLocal()
+        maven {
+            // Gradle 7.0默认强制使用https的仓库地址，默认不允许使用非https协议这里设置为允许
+            allowInsecureProtocol = true
+            url 'file:///Users/huchangjie1/.m2/repository'
+        }
+    }
+}
+
+rootProject.name = "HucjTest"
+include ':app'
+include ':testlib'
+include ':flutter_module'
+
+setBinding(new Binding([gradle: this]))                                // new
+evaluate(new File(                                                     // new
+        settingsDir.parentFile,                                              // new
+        "${rootProject.name}/flutter_module/.android/include_flutter.groovy"                         // new
+))

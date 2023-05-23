@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title 订单列表
+
+autonumber
+
+MyOrderListFragment -> ListFragmentPresenter: getOrderList
+ListFragmentPresenter -> ListFragmentPresenter: requestOrderList
+ListFragmentPresenter -> ListFragmentInteractor: getOrderList(_,_,functionId,_)
+note right: 拼接请求参数
+
+ListFragmentInteractor -> ListFragmentInteractor: getOrderList
+ListFragmentInteractor ->GetOrderListBusinessAction:doRequest()
+note right: 调用网络请求封装类发起请求
+
+GetOrderListBusinessAction --> ListFragmentPresenter: 发送通知 key = Show_Order_List
+ListFragmentPresenter -> ListFragmentPresenter: showOrderList
+note left: 根据页码加载页面
+
+ListFragmentPresenter -> MyOrderListFragment : showOrderList()
+ListFragmentPresenter <- MyOrderListFragment : initAdapterOrUpdate()
+note right: 重置推荐位、空页面、初始化adapter
+
+ListFragmentPresenter -> ListFragmentPresenter : initAdapterOrAppend()
+ListFragmentPresenter -> OrderListLogicHandler : initAdapterOrAppend()
+note right: OrderListLogicHandler处理Adapter相关逻辑
+
+OrderListLogicHandler -> OrderListLogicHandler : initOrderListAdapterOrUpdate()
+note left: notifyDataSetChanged刷新列表
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+"初始化" --> RecyclerView: onMeasure()
+note left: 入口1 mLayout==null直接，默认会空白
+
+RecyclerView -> LinearLayoutManager: onMeasure()
+note left: mAutoMeasure==true
+
+RecyclerView -> RecyclerView: defaultOnMeasure()
+note left: layoutManager没有设置直接走default，会为空白
+
+RecyclerView -> RecyclerView: dispatchLayoutStep1()
+note left: mLayoutStep默认值是 State.STEP_START 执行完后是State.STEP_LAYOUT
+
+RecyclerView -> RecyclerView: dispatchLayoutStep2()
+note left: 真正执行LayoutManager绘制的地方,执行完后是State.STEP_ANIMATIONS
+
+RecyclerView -> LinearLayoutManager: onLayoutChildren()
+note left: RecyclerView将View的绘制交给了LayoutManager
+
+LinearLayoutManager -> LinearLayoutManager: resolveShouldLayoutReverse()
+note left: 判断绘制方向，默认正向
+
+LinearLayoutManager -> LinearLayoutManager: updateAnchorInfoForLayout()
+note left: 确定锚点位置和偏移量
+
+LinearLayoutManager -> LinearLayoutManager: detachAndScrapAttachedViews()
+note left: 缓存
+
+LinearLayoutManager -> LinearLayoutManager: scrapOrRecycleView()
+note left: for循环更新每个ViewHolder缓存
+
+LinearLayoutManager -> LinearLayoutManager: recycleViewHolderInternal()
+note left: 更新mCachedViews（默认2个）、mRecyclerPool（默认5个）
+
+LinearLayoutManager -> LinearLayoutManager: fill()
+note left: 复用，分方向开始add view；正向（先向上再向下），逆向（先向下再向上）
+
+LinearLayoutManager -> LinearLayoutManager: ......
+note left: 省略获取ViewHolder缓存,addView的过程
+
+LinearLayoutManager -> LinearLayoutManager: measureChildWithMargins()
+note left: 测量ChildView
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+/'======== 入口2 '/
+
+"滑动" --> RecyclerView: onTouchEvent-MOVE
+note right: 入口2
+
+RecyclerView -> RecyclerView: scrollByInternal()
+
+RecyclerView -> RecyclerView: scrollStep()
+
+RecyclerView -> LinearLayoutManager: scrollVerticallyBy()
+note left: 以LinearLayoutManager竖向滑动为例
+
+LinearLayoutManager -> LinearLayoutManager: scrollBy()
+
+LinearLayoutManager -> LinearLayoutManager: fill()
+note left: 根据remainingSpace剩余空间的大小while循环添加view
+
+LinearLayoutManager -> LinearLayoutManager: layoutChunk()
+
+LinearLayoutManager -> LayoutState: next()
+note left: 开始获取ViewHolder（读取cache or create）
+
+LayoutState -> Recycler: getViewForPosition()
+
+Recycler -> Recycler: getViewForPosition()
+
+Recycler -> Recycler: tryGetViewHolderForPositionByDeadline()
+
+Recycler -> Recycler: ......
+note left: 省略获取ViewHolder缓存
+
+@enduml

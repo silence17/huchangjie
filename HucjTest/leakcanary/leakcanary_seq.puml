@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+MainProcessAppWatcherInstaller.onCreate -> AppWatcher: manualInstall()
+note left:ContentProvider
+
+AppWatcher --> AppWatcher: appDefaultWatchers()
+note over AppWatcher #F3F4F5
+监听四种类型：
+1、ActivityWatcher
+2、FragmentAndViewModelWatcher
+3、RootViewWatcher
+4、ServiceWatcher
+end note
+
+AppWatcher --> AppWatcher: checkMainThread()
+note left: 创建InternalLeakCanary
+
+AppWatcher --> ActivityWatcher: install()
+note left: 监听Activity 生命周期
+
+'AppWatcher --> FragmentAndViewModelWatcher: install()
+'note left: 创建监听Fragment 生命周期
+
+ActivityWatcher --> ActivityWatcher: onActivityDestroyed()
+ActivityWatcher --> ObjectWatcher: expectWeaklyReachable()
+
+== 开始检查内存泄漏 ==
+
+ObjectWatcher --> ObjectWatcher: removeWeaklyReachableObjects()
+note left: 清除watchedObjects中没有泄漏的对象
+ObjectWatcher --> ObjectWatcher: 当前对象添加到watchedObjects
+note left: 移除已经被回收的
+ObjectWatcher --> ObjectWatcher: moveToRetained
+note left:mainHandler.postDelayed 延迟5s
+
+ObjectWatcher --> ObjectWatcher: removeWeaklyReachableObjects()
+note left: 移除已经被回收的
+
+ObjectWatcher --> InternalLeakCanary: scheduleRetainedObjectCheck()
+InternalLeakCanary --> HeapDumpTrigger: scheduleRetainedObjectCheck()
+
+note left of HeapDumpTrigger  #F3F4F5
+1、清除没有泄漏的对象
+2、生成弱引用添加到watchedObjects，并关联Queue
+3、延迟5s 执行
+4、清除没有泄漏的对象，如果该key对象没有被销毁
+5、执行GC
+6、未被回收对象在5个不做处理
+7、两次执行间隔小于6s，延迟6s后重新执行
+8、生成内存快照.hprof文件
+end note
+HeapDumpTrigger --> HeapDumpTrigger: checkRetainedObjects()
+
+HeapDumpTrigger --> HeapDumpTrigger: gcTrigger.runGc()
+note left: objectWatcher未回收到对象>0,会执行GC;
+
+HeapDumpTrigger --> HeapDumpTrigger: checkRetainedCount();
+note left: 存在内存泄漏并且泄漏对象>5
+
+note left of HeapDumpTrigger  #F3F4F5
+1、如果没有检测到异常持有的对象，返回
+2、如果有异常对象，主动触发gc
+3、如果还有异常对象，就是内存泄漏了。
+4、判断泄漏数量是否到达需要dump的地步
+5、判断一分钟内是否叫进行过dump了
+dumpHeap 前面都是判断代码，关键重点在于dumpHeap方法
+end note
+HeapDumpTrigger --> HeapDumpTrigger: dumpHeap()
+@enduml

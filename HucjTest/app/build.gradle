@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    //引入自定义插件，插件名与前面的*.properties文件的文件名是一致的
+//    id 'com.hucj.plugin'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.hucj.hucjtest"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+
+//自定义属性
+//task defindTask {
+//    ext.myProperty = "The property value"
+//
+//    println 't2'
+
+
+//闭包是一段代码，所以需要用花括号括起来..
+//是Groovy中非常重要的一个数据类型或者说一种概念了
+//    aClosure = {
+//        String param1, int param2 ->  //这个箭头很关键。箭头前面是参数定义，箭头后面是代码
+//            println "this is code" //这是代码，最后一句是返回值，也可以使用return，和Groovy中普通函数一样
+//    }
+
+//那么调用的时候，就可以免括号！
+//    testClosure(4, "test", {
+//        println "i am in closure"
+//    })  //红色的括号可以不写..
+
+//}
+
+//static def testClosure(int a1, String b1, Closure closure) {
+//
+//    println "i am in testClosure closure " + a1 + b1
+//    //do something
+//    closure() //调用闭包
+//}
+
+
+//task defindTask1 {
+//    //依赖defindTask任务
+//    dependsOn(defindTask)
+//
+//    println defindTask.myProperty
+//}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':flutter')
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+
+    //java-lib 发布本地maven库
+    implementation 'com.hucj.gradle:testlib:1.0.0-SNAPSHOT'
+    //gradle plugin发布本地maven库
+//    implementation 'com.hucj.plugin:myplugin:local-SNAPSHOT'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'io.reactivex:rxandroid:1.1.0'
+
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8'
+//    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--surface view 倒计时-->
+    <declare-styleable name="DownTimeView">
+        <attr name="text_color" format="color" />
+        <attr name="text_size" format="dimension" />
+        <attr name="text_text" format="string" />
+        <attr name="text_gravity">
+            <enum name="left" value="1" />
+            <enum name="center" value="2" />
+            <enum name="right" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="DancingView">
+        <attr name="lineWidth" format="dimension" />
+        <attr name="lineHeight" format="dimension" />
+        <attr name="pointColor" format="reference|color" />
+        <attr name="lineColor" format="reference|color" />
+        <attr name="ballColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="ActivityIndicatorView">
+        <!--  菊花颜色  -->
+        <attr name="aiv_color" format="color" />
+        <!--  开始角度  -->
+        <attr name="aiv_startAngle" format="integer" />
+        <!--  线条宽度  -->
+        <attr name="aiv_strokeWidth" format="dimension" />
+        <!--  是否自动开始  -->
+        <attr name="aiv_auto_start" format="boolean" />
+    </declare-styleable>
+
+</resources>
