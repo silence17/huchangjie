@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/*
+ * StatefulWidget生命周期
+ */
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -127,7 +130,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                 child: IconButton(
                     onPressed: _jumpOtherPage,
                     icon: const Icon(Icons.abc),
-                    padding: const EdgeInsets.all(30)))
+                    padding: const EdgeInsets.all(30))),
+
+            buildRow(),
           ],
         ),
       ),
@@ -137,5 +142,33 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  /*
+   * 图片加载
+   */
+  Widget buildRow() {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      Container(
+        //超出部分，可裁剪
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20)
+        ),
+        //margin: const EdgeInsets.all(50),
+        child: Image.asset('images/pic1.jpg'),
+      ),
+      Image.asset(
+        'images/pic3.jpg',
+        fit: BoxFit.cover,
+      ),
+      //主要应用在 对子控件的大小的一些约束，能强制子控件具有特定宽度、高度,使子控件设置的宽高失效
+      //1.限制子元素控件的大小
+      //2.设置两个控件之间的距离
+      SizedBox(
+          width: 50,
+          height: 80,
+          child: Image.network('https://scpic.chinaz.net/files/default/imgs/2023-05-18/dcd04bf152731868.jpg')),
+    ]);
   }
 }

@@ -41,6 +41,14 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  # 资源
+  # 常见的资源类型包括静态数据（例如 JSON 文件），配置文件，图标和图片（JPEG，WebP，GIF，动画 WebP / GIF，PNG，BMP 和 WBMP）
+  # 包含一个目录下的所有 assets，需要在目录名称的结尾加上 /
+  # 在 pubspec.yaml 的 assets 部分中指定的资源路径，会在构建过程中，查找同级子目录中相同名称的任何文件。
+  # 这些文件会与指定的资源一起被打包在资源 bundle 中。
+  assets:
+    - images/
+    - images/1.5x/
 
   # To add Flutter specific assets to your application, add an assets section,
   # like this:
