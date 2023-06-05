@@ -26,6 +26,7 @@ dependencyResolutionManagement {
     }
 }
 
+//声明工程树的配置，我们需要将各个Module在此文件中引入，否则Module会被当成一个文件夹，而不会被当成Module处理。
 rootProject.name = "HucjTest"
 include ':app'
 include ':testlib'

@@ -1,5 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-//buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
+
+/**
+ * 整个文件主要包括两个部分： buildscript和allprojects。
+ *
+ * buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
+ * allprojects 里是项目本身需要的依赖，项目内所需要的库需要在此处声明，否则会找不到对应的库
+ */
 buildscript {
     repositories {
         mavenCentral()

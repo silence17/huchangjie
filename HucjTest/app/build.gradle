@@ -1,3 +1,4 @@
+//plugin：声明要引入的插件
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -5,6 +6,7 @@ plugins {
 //    id 'com.hucj.plugin'
 }
 
+//声明Android工程相关的配置
 android {
     compileSdk 31
 
@@ -74,6 +76,7 @@ android {
 //}
 
 
+//声明当前Module的依赖库。
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
