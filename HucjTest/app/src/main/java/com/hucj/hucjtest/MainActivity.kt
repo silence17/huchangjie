@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() {
 
     private var handle: MyHandle = MyHandle()
 
-    private var view: View? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +44,8 @@ class MainActivity : AppCompatActivity() {
 
                 Handler(Looper.getMainLooper()).sendEmptyMessage(1)
 
-
-                val labels: MutableList<String> = mutableListOf<String>()
-                var last: String? = labels.last()
+//                val labels: MutableList<String> = mutableListOf<String>()
+//                var last: String? = labels.last()
 
                 startActivity(Intent(this, MemoryTestActivity::class.java))
             }
@@ -97,9 +94,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.flutter_btn).setOnClickListener {
 
             startActivity(
-                withNewEngine()
-                    .initialRoute("/five")
-                    .build(this)
+                withNewEngine().initialRoute("/five").build(this)
             )
 
             //添加flutter回调

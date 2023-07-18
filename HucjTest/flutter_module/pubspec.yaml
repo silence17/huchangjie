@@ -1,4 +1,6 @@
+#name: 应用或包名称
 name: flutter_module
+#description: 应用或包的描述、简介。
 description: A new Flutter module project.
 
 # The following defines the version and build number for your application.
@@ -15,19 +17,26 @@ description: A new Flutter module project.
 # This version is used _only_ for the Runner app, which is used if you just do
 # a `flutter run` or a `flutter make-host-app-editable`. It has no impact
 # on any other native host app that you embed your Flutter project into.
+#version：应用或包的版本号
 version: 1.0.0+1
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
+#dependencies：应用或包依赖的其他包或插件。
+#依赖包将作为App的源码的一部分参与编译，生成最终的安装包。
 dependencies:
   flutter:
     sdk: flutter
+  # 新添加的依赖
+  english_words: ^4.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+#开发环境依赖的工具包（而不是flutter应用本身依赖的包）
+#依赖包只是作为开发阶段的一些工具包，主要是用于帮助我们提高开发、测试效率，比如 flutter 的自动化测试包等。
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -36,6 +45,7 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+#flutter：flutter相关的配置选项。
 flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -46,6 +56,7 @@ flutter:
   # 包含一个目录下的所有 assets，需要在目录名称的结尾加上 /
   # 在 pubspec.yaml 的 assets 部分中指定的资源路径，会在构建过程中，查找同级子目录中相同名称的任何文件。
   # 这些文件会与指定的资源一起被打包在资源 bundle 中。
+  # 每个 asset 都通过相对于pubspec.yaml文件所在的文件系统路径来标识自身的路径。asset 的声明顺序是无关紧要的，asset的实际目录可以是任意文件夹（在本示例中是assets 文件夹）。
   assets:
     - images/
     - images/1.5x/

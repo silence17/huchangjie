@@ -1,13 +1,19 @@
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 /*
  * StatefulWidget生命周期
  */
 class MyHomePage extends StatefulWidget {
+  /*
+   * 标识required，标识必须传入
+   */
   const MyHomePage({super.key, required this.title});
 
   final String title;
 
+  /// =>是return语句的简写
+  /// 生命周期内执行一次
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -16,10 +22,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   int _counter = 0;
 
   void _incrementCounter() {
-    //需要刷新 UI 时
+    //需要刷新 UI 时,触发 Widget 的重新构建
     setState(() {
       _counter++;
     });
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    super.setState(fn);
   }
 
   void _jumpOtherPage() {
@@ -32,6 +43,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
    * 当State 对象插入视图树之后
    * 此函数只会被调用一次，子类通常会重写此方法，在其中进行初始化操作.比如加载网络数据，重写此方法时一定要调用 「super.initState()」
    *
+   * 类似于 Android 的 onCreate
+   * 所以在这里 View 并没有渲染，但是这时 StatefulWidget 已经被加载到渲染树里了，这时 StatefulWidget 的 mount 的值会变为 true
    */
   @override
   void initState() {
@@ -39,7 +52,13 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
   }
 
-  ///State 对象的依赖关系发生变化后
+  /*
+   * State 对象的依赖关系发生变化后
+   *
+   *  didChangeDependencies 方法会在 initState 方法之后立即调用，
+   * 之后当 StatefulWidget 刷新的时候，就不会调用了，除非你的 StatefulWidget 依赖的 InheritedWidget 发生变化之后，didChangeDependencies 才会调用，
+   * 所以 didChangeDependencies 有可能会被调用多次。
+   */
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -66,6 +85,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   void dispose() {
     super.dispose();
     WidgetsBinding.instance.removeObserver(this);
+  }
+
+  /*
+   * 用于开发阶段，热重载的时候会被调用，之后会重新构建；
+   */
+  @override
+  void reassemble() {
+    super.reassemble();
   }
 
   /*
@@ -104,6 +131,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
    */
   @override
   Widget build(BuildContext context) {
+    final wordPair = WordPair.random();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -119,6 +148,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+
+            Text('随机数：$wordPair'),
             // 可以使用 BoxDecoration 来进行装饰，如背景，边框，或阴影等。 Container 还可以设置外边距、内边距和尺寸的约束条件等
             Container(
                 width: 200,
