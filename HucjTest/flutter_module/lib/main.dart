@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_module/grid/GridListDemo.dart';
-import 'package:flutter_module/page/HomePage.dart';
 import 'package:flutter_module/stack/LayoutBuilderDemo.dart';
+import 'package:flutter_module/stack/ScaffoldRoute.dart';
 import 'package:flutter_module/stack/stack.dart';
 
 import 'flutter2android/HomePageCallback.dart';
@@ -38,9 +38,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const MyHomePage(
-              title: '测试',
-            ),
+        '/': (context) => const ScaffoldRoute(),
         // 注册Flutter 路由
         '/second': (context) => const MyHomePage2(
               title: '测试Android、Flutter交互',
@@ -54,7 +52,7 @@ class MyApp extends StatelessWidget {
             ),
         '/four': (context) => const GridListDemo(type: GridListDemoType.header),
         '/five': (context) => const StackDemo(),
-        '/six': (context) => const LayoutBuilderRoute()
+        '/six': (context) => const LayoutBuilderRoute(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

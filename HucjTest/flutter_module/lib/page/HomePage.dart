@@ -238,7 +238,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               fit: BoxFit.cover,
             ),
             onTap: () {
-              Navigator.of(context).pushNamed('/five');
+              //Navigator.of(context).pushNamed('/five');
+              Navigator.of(context).pushNamed('/seven');
             },
           ),
 
