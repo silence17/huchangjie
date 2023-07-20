@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_module/grid/GridListDemo.dart';
 import 'package:flutter_module/page/HomePage.dart';
+import 'package:flutter_module/stack/LayoutBuilderDemo.dart';
 import 'package:flutter_module/stack/stack.dart';
 
 import 'flutter2android/HomePageCallback.dart';
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
               ],
             ),
         '/four': (context) => const GridListDemo(type: GridListDemoType.header),
-        '/five': (context) => const StackDemo()
+        '/five': (context) => const StackDemo(),
+        '/six': (context) => const LayoutBuilderRoute()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

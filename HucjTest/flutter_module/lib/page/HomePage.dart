@@ -144,10 +144,17 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+
+            ConstrainedBox(
+                // 盒模型
+                constraints: const BoxConstraints(minWidth: 100),
+                child: Text(
+                  '$_counter',
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20.0,
+                      background: Paint()..color = Colors.grey),
+                )),
 
             Text('随机数：$wordPair'),
             // 可以使用 BoxDecoration 来进行装饰，如背景，边框，或阴影等。 Container 还可以设置外边距、内边距和尺寸的约束条件等
@@ -164,6 +171,33 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                     padding: const EdgeInsets.all(30))),
 
             buildRow(),
+            const Wrap(
+              spacing: 8.0, // 主轴(水平)方向间距
+              runSpacing: 4.0, // 纵轴（垂直）方向间距
+              alignment: WrapAlignment.start, //沿主轴方向居中
+              children: <Widget>[
+                Chip(
+                  avatar: CircleAvatar(
+                      backgroundColor: Colors.blue, child: Text('A')),
+                  label: Text('Hamilton'),
+                ),
+                Chip(
+                  avatar: CircleAvatar(
+                      backgroundColor: Colors.blue, child: Text('M')),
+                  label: Text('Lafayette'),
+                ),
+                Chip(
+                  avatar: CircleAvatar(
+                      backgroundColor: Colors.blue, child: Text('H')),
+                  label: Text('Mulligan'),
+                ),
+                Chip(
+                  avatar: CircleAvatar(
+                      backgroundColor: Colors.blue, child: Text('J')),
+                  label: Text('Laurens'),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -179,29 +213,48 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
    * 图片加载
    */
   Widget buildRow() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      Container(
-        //超出部分，可裁剪
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-            border: Border.all(width: 3, color: Colors.black38),
-            color: Colors.black26,
-            borderRadius: BorderRadius.circular(10)),
-        //margin: const EdgeInsets.all(50),
-        child: Image.asset('images/pic1.jpg'),
-      ),
-      Image.asset(
-        'images/pic3.jpg',
-        fit: BoxFit.cover,
-      ),
-      //主要应用在 对子控件的大小的一些约束，能强制子控件具有特定宽度、高度,使子控件设置的宽高失效
-      //1.限制子元素控件的大小
-      //2.设置两个控件之间的距离
-      SizedBox(
-          width: 50,
-          height: 80,
-          child: Image.network(
-              'https://scpic.chinaz.net/files/default/imgs/2023-05-18/dcd04bf152731868.jpg')),
-    ]);
+    //MainAxisAlignment和CrossAxisAlignment，分别代表主轴对齐和纵轴对齐
+    //MainAxisSize.min表示尽可能少的占用水平空间
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //表示尽可能多的占用水平方向的空间，此时无论子 widgets 实际占用多少水平空间，Row的宽度始终等于水平方向的最大宽度
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Container(
+            //超出部分，可裁剪
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+                border: Border.all(width: 3, color: Colors.black38),
+                color: Colors.black26,
+                borderRadius: BorderRadius.circular(10)),
+            //margin: const EdgeInsets.all(50),
+            child: Image.asset('images/pic1.jpg'),
+          ),
+
+          //没有点击事件的view，可以使用GestureDetector包裹
+          GestureDetector(
+            child: Image.asset(
+              'images/pic3.jpg',
+              fit: BoxFit.cover,
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed('/five');
+            },
+          ),
+
+          //主要应用在 对子控件的大小的一些约束，能强制子控件具有特定宽度、高度,使子控件设置的宽高失效
+          //1.限制子元素控件的大小
+          //2.设置两个控件之间的距离
+          GestureDetector(
+            child: SizedBox(
+                width: 50,
+                height: 80,
+                child: Image.network(
+                    'https://scpic.chinaz.net/files/default/imgs/2023-05-18/dcd04bf152731868.jpg')),
+            onTap: () {
+              Navigator.of(context).pushNamed('/six');
+            },
+          ),
+        ]);
   }
 }
