@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_module/page/HomePage.dart';
 
 import '../list/Product.dart';
 import '../list/ProductListPage.dart';
 import 'LayoutBuilderDemo.dart';
 import 'MyDrawer.dart';
+import 'ViewPageDemo.dart';
 
 /*
  * Scaffold脚手架
@@ -20,7 +20,7 @@ class _ScaffoldRouteState extends State<ScaffoldRoute> {
   int _selectIndex = 0;
 
   final bodyList = [
-    const MyHomePage(title: '测试'),
+    const ViewPageDemo(),
     const LayoutBuilderRoute(),
     const ShoppingList(
       products: [

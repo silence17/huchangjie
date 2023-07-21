@@ -18,7 +18,8 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+class _MyHomePageState extends State<MyHomePage>
+    with WidgetsBindingObserver, AutomaticKeepAliveClientMixin {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -131,12 +132,13 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
    */
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final wordPair = WordPair.random();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      // ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -258,4 +260,11 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
           ),
         ]);
   }
+
+  /*
+   * 使用TabBarView+AutomaticKeepAliveClientMixin这种方式既实现了页面状态的保持，
+   * 又具有类似惰性求值的功能，对于未使用的页面状态不会进行实例化，减小了应用初始化时的开销。
+   */
+  @override
+  bool get wantKeepAlive => true;
 }

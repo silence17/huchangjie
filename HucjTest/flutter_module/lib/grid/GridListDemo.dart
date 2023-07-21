@@ -9,6 +9,7 @@ import '../material_demo_types.dart';
 // BEGIN gridListsDemo
 
 class GridListDemo extends StatelessWidget {
+
   const GridListDemo({super.key, required this.type});
 
   final GridListDemoType type;
@@ -71,10 +72,10 @@ class GridListDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('demoGridListsTitle'),
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   title: Text('demoGridListsTitle'),
+      // ),
       body: GridView.count(
         restorationId: 'grid_view_demo_grid_offset',
         crossAxisCount: 2,
