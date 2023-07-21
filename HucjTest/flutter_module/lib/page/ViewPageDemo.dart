@@ -3,7 +3,7 @@ import 'package:flutter_module/grid/GridListDemo.dart';
 import 'package:flutter_module/page/HomePage.dart';
 
 import '../material_demo_types.dart';
-import '../page/DialogPageDemo.dart';
+import 'DialogPageDemo.dart';
 
 final _tabDataList = <_TabData>[
   _TabData(

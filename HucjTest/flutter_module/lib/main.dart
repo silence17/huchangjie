@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_module/grid/GridListDemo.dart';
-import 'package:flutter_module/stack/LayoutBuilderDemo.dart';
-import 'package:flutter_module/stack/ScaffoldRoute.dart';
-import 'package:flutter_module/stack/stack.dart';
+import 'package:flutter_module/page/LayoutBuilderDemo.dart';
+import 'package:flutter_module/page/ScaffoldRoute.dart';
+import 'package:flutter_module/page/stack.dart';
 
 import 'flutter2android/HomePageCallback.dart';
 import 'list/Product.dart';
