@@ -4,13 +4,16 @@ import 'package:flutter_module/page/HomePage.dart';
 
 import '../material_demo_types.dart';
 import 'DialogPageDemo.dart';
+import 'PoinerPage.dart';
 
 final _tabDataList = <_TabData>[
   _TabData(
-      tab: const Text('推荐'),
+      tab: const Text('Grid'),
       body: const GridListDemo(type: GridListDemoType.header)),
-  _TabData(tab: const Text('VIP'), body: const MyHomePage(title: 'tab layout')),
-  _TabData(tab: const Text("Dialog_Demo"), body: const DialogPageDemo())
+  _TabData(
+      tab: const Text('Common'), body: const MyHomePage(title: 'tab layout')),
+  _TabData(tab: const Text("Dialog"), body: const DialogPageDemo()),
+  _TabData(tab: const Text("Pointer"), body: const PointerPage())
 ];
 
 /*

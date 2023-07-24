@@ -17,55 +17,30 @@ class GridListDemo extends StatelessWidget {
   List<_Photo> _photos(BuildContext context) {
     return [
       _Photo(
-        assetName: 'places/india_chettinad_silk_maker.png',
+        assetName: 'images/pic.jpg',
         title: 'l',
         subtitle: 'm',
       ),
       _Photo(
-        assetName: 'places/india_chettinad_produce.png',
+        assetName: 'images/pic1.jpg',
         title: 'h',
         subtitle: 'i',
       ),
       _Photo(
-        assetName: 'places/india_tanjore_market_technology.png',
+        assetName: 'images/pic2.jpg',
         title: 'e',
         subtitle: 'f',
       ),
       _Photo(
-        assetName: 'places/india_pondicherry_beach.png',
+        assetName: 'images/pic1.jpg',
         title: 'a',
         subtitle: 'b',
       ),
       _Photo(
-        assetName: 'places/india_pondicherry_fisherman.png',
+        assetName: 'images/pic3.jpg',
         title: 'c',
         subtitle: 'd',
-      ),
-      _Photo(
-        assetName: 'places/india_pondicherry_fisherman.png',
-        title: 'c342',
-        subtitle: 'd',
-      ),
-      _Photo(
-        assetName: 'places/india_pondicherry_fisherman.png',
-        title: 'g3423',
-        subtitle: 'd',
-      ),
-      _Photo(
-        assetName: 'places/india_pondicherry_fisherman.png',
-        title: 'j2342',
-        subtitle: 'd',
-      ),
-      _Photo(
-        assetName: 'places/india_pondicherry_fisherman.png',
-        title: 'p342',
-        subtitle: 'd',
-      ),
-      _Photo(
-        assetName: 'places/india_pondicherry_fisherman.png',
-        title: 'o42',
-        subtitle: 'd',
-      ),
+      )
     ];
   }
 
@@ -122,6 +97,10 @@ class _GridTitleText extends StatelessWidget {
   }
 }
 
+
+/*
+ * item
+ */
 class _GridDemoPhotoItem extends StatelessWidget {
   final _Photo photo;
   final GridListDemoType tileStyle;
@@ -140,7 +119,7 @@ class _GridDemoPhotoItem extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Image.asset(
           photo.assetName,
-          package: 'flutter_gallery_assets',
+          // package: 'flutter_gallery_assets',
           fit: BoxFit.cover,
         ),
       ),

@@ -1,6 +1,8 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
+import '../widget/point/PointerMoveIndicator.dart';
+
 /*
  * StatefulWidget生命周期
  */
@@ -200,6 +202,10 @@ class _MyHomePageState extends State<MyHomePage>
                 ),
               ],
             ),
+            const SizedBox(
+              width: double.infinity,
+              child: PointerMoveIndicator(),
+            )
           ],
         ),
       ),
