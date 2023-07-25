@@ -74,7 +74,7 @@ class StackDemo extends StatelessWidget {
             // alignment: AlignmentDirectional.topStart,
             children: [
               const CircleAvatar(
-                backgroundImage: AssetImage('images/pic.jpg'),
+                backgroundImage: AssetImage('assets/images/pic.jpg'),
                 radius: 100,
               ),
               Container(

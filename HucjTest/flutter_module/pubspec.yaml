@@ -30,7 +30,12 @@ dependencies:
     sdk: flutter
   # 新添加的依赖
   english_words: ^4.0.0
-  device_info: ^2.0.0
+  # 获取当前设备信息 https://github.com/fluttercommunity/plus_plugins/tree/main/packages/device_info_plus
+  device_info_plus: 9.0.2
+  # https://github.com/ReactiveX/rxdart
+  rxdart: ^0.27.7
+  # Toast插件 https://github.com/OpenFlutter/flutter_oktoast
+  oktoast: ^3.3.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -59,8 +64,8 @@ flutter:
   # 这些文件会与指定的资源一起被打包在资源 bundle 中。
   # 每个 asset 都通过相对于pubspec.yaml文件所在的文件系统路径来标识自身的路径。asset 的声明顺序是无关紧要的，asset的实际目录可以是任意文件夹（在本示例中是assets 文件夹）。
   assets:
-    - images/
-    - images/1.5x/
+    - assets/images/
+    - assets/images/1.5x/
 
   # To add Flutter specific assets to your application, add an assets section,
   # like this:

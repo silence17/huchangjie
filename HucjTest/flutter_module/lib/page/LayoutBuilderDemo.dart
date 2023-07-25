@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_module/widget/MyAppBar.dart';
 
 import '../utils/LayoutLogPrint.dart';
 
@@ -46,62 +47,71 @@ class LayoutBuilderRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     var _children = List.filled(6, const Text("A"));
     // Column在本示例中在水平方向的最大宽度为屏幕的宽度
-    return Container(
-        //BoxDecoration装饰器，可以在其子组件绘制前(或后)绘制一些装饰（Decoration），如背景、边框、渐变等。
-        decoration: const BoxDecoration(
-            // 渐变色
-            gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 251, 240, 226),
-          Color.fromARGB(255, 232, 233, 243),
-          Color.fromARGB(255, 252, 232, 226),
-          Color.fromARGB(255, 248, 225, 248),
-          Color.fromARGB(255, 220, 230, 254)
-        ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
-        child: Column(
-          children: [
-            // 限制宽度为190，小于 200
-            // SizedBox(width: 190, child: ResponsiveColumn(children: _children)),
-            ResponsiveColumn(children: _children),
-            // 下面介绍
-            const LayoutLogPrint(child: Text("xx")),
+    return Scaffold(
+      //自定义title bar
+      appBar: const MyAppBar(
+        isBack: false,
+        //centerTitle: '测试MyTitle',
+        actionName: '分享',
+      ),
+      body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          //BoxDecoration装饰器，可以在其子组件绘制前(或后)绘制一些装饰（Decoration），如背景、边框、渐变等。
+          decoration: const BoxDecoration(
+              // 渐变色
+              gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 251, 240, 226),
+            Color.fromARGB(255, 232, 233, 243),
+            Color.fromARGB(255, 252, 232, 226),
+            Color.fromARGB(255, 248, 225, 248),
+            Color.fromARGB(255, 220, 230, 254)
+          ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+          child: Column(
+            children: [
+              // 限制宽度为190，小于 200
+              // SizedBox(width: 190, child: ResponsiveColumn(children: _children)),
+              ResponsiveColumn(children: _children),
+              // 下面介绍
+              const LayoutLogPrint(child: Text("xx")),
 
-            const SizedBox(
-              height: 100,
-            ),
+              const SizedBox(
+                height: 100,
+              ),
 
-            Container(
-              height: 50,
-              // 占据父容器的宽度
-              // width: double.infinity,
-              // width: MediaQuery.of(context).size.width,
-              color: Colors.black,
-              child: Transform(
-                alignment: Alignment.topRight,
-                transform: Matrix4.skewY(0.3),
-                child: Container(
-                  padding: const EdgeInsets.all(2.5),
-                  color: Colors.deepOrange,
-                  child: const Text("Apartment for rent!",
-                      style: TextStyle(
-                          fontSize: 20,
-                          //首先 TextStyle 中的 height 参数值在设置后，其效果值是 fontSize 的倍数：
-                          //当 height 为空时，行高默认是使用字体的量度（这个量度后面会有解释）；
-                          //当 height 不是空时，行高为 height * fontSize 的大小；
-                          height: 1)),
+              Container(
+                height: 50,
+                // 占据父容器的宽度
+                // width: double.infinity,
+                // width: MediaQuery.of(context).size.width,
+                color: Colors.black,
+                child: Transform(
+                  alignment: Alignment.topRight,
+                  transform: Matrix4.skewY(0.3),
+                  child: Container(
+                    padding: const EdgeInsets.all(2.5),
+                    color: Colors.deepOrange,
+                    child: const Text("Apartment for rent!",
+                        style: TextStyle(
+                            fontSize: 20,
+                            //首先 TextStyle 中的 height 参数值在设置后，其效果值是 fontSize 的倍数：
+                            //当 height 为空时，行高默认是使用字体的量度（这个量度后面会有解释）；
+                            //当 height 不是空时，行高为 height * fontSize 的大小；
+                            height: 1)),
+                  ),
                 ),
               ),
-            ),
 
-            const SizedBox(
-              height: 20,
-            ),
+              const SizedBox(
+                height: 20,
+              ),
 
-            Container(
-              margin: const EdgeInsets.only(top: 50.0, left: 120.0),
-              constraints:
-                  const BoxConstraints.tightFor(width: 200.0, height: 150.0),
-              //背景装饰
-              decoration: const BoxDecoration(
+              Container(
+                margin: const EdgeInsets.only(top: 50.0, left: 120.0),
+                constraints:
+                    const BoxConstraints.tightFor(width: 200.0, height: 150.0),
+                //背景装饰
+                decoration: const BoxDecoration(
                   //背景径向渐变
                   gradient: RadialGradient(
                     colors: [Colors.red, Colors.orange],
@@ -115,15 +125,17 @@ class LayoutBuilderRoute extends StatelessWidget {
                         color: Colors.black54,
                         offset: Offset(2.0, 2.0),
                         blurRadius: 4.0),
-                  ],),
-              transform: Matrix4.rotationZ(.2),
-              alignment: Alignment.center,
-              child: const Text(
-                '5.21',
-                style: TextStyle(color: Colors.white, fontSize: 40.0),
-              ),
-            )
-          ],
-        ));
+                  ],
+                ),
+                transform: Matrix4.rotationZ(.2),
+                alignment: Alignment.center,
+                child: const Text(
+                  '5.21',
+                  style: TextStyle(color: Colors.white, fontSize: 40.0),
+                ),
+              )
+            ],
+          )),
+    );
   }
 }

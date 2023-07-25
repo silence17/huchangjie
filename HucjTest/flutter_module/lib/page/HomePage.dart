@@ -242,7 +242,7 @@ class _MyHomePageState extends State<MyHomePage>
           //没有点击事件的view，可以使用GestureDetector包裹
           GestureDetector(
             child: Image.asset(
-              'images/pic3.jpg',
+              'assets/images/pic3.jpg',
               fit: BoxFit.cover,
             ),
             onTap: () {

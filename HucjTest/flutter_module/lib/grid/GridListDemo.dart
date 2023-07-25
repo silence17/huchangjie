@@ -17,27 +17,27 @@ class GridListDemo extends StatelessWidget {
   List<_Photo> _photos(BuildContext context) {
     return [
       _Photo(
-        assetName: 'images/pic.jpg',
+        assetName: 'assets/images/pic.jpg',
         title: 'l',
         subtitle: 'm',
       ),
       _Photo(
-        assetName: 'images/pic1.jpg',
+        assetName: 'assets/images/pic1.jpg',
         title: 'h',
         subtitle: 'i',
       ),
       _Photo(
-        assetName: 'images/pic2.jpg',
+        assetName: 'assets/images/pic2.jpg',
         title: 'e',
         subtitle: 'f',
       ),
       _Photo(
-        assetName: 'images/pic1.jpg',
+        assetName: 'assets/images/pic1.jpg',
         title: 'a',
         subtitle: 'b',
       ),
       _Photo(
-        assetName: 'images/pic3.jpg',
+        assetName: 'assets/images/pic3.jpg',
         title: 'c',
         subtitle: 'd',
       )
