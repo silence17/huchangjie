@@ -236,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage>
                 color: Colors.black26,
                 borderRadius: BorderRadius.circular(10)),
             //margin: const EdgeInsets.all(50),
-            child: Image.asset('images/pic1.jpg'),
+            child: Image.asset('assets/images/pic1.jpg'),
           ),
 
           //没有点击事件的view，可以使用GestureDetector包裹

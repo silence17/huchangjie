@@ -117,10 +117,15 @@ class _GridDemoPhotoItem extends StatelessWidget {
       child: Material(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         clipBehavior: Clip.antiAlias,
-        child: Image.asset(
-          photo.assetName,
-          // package: 'flutter_gallery_assets',
-          fit: BoxFit.cover,
+        child: GestureDetector(
+          child: Image.asset(
+            photo.assetName,
+            // package: 'flutter_gallery_assets',
+            fit: BoxFit.cover,
+          ),
+          onTap:() {
+            Navigator.of(context).pushNamed('/seven');
+          },
         ),
       ),
     );
