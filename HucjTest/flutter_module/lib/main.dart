@@ -1,12 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_module/actual/LoginPage.dart';
 import 'package:flutter_module/grid/GridListDemo.dart';
 import 'package:flutter_module/page/LayoutBuilderDemo.dart';
 import 'package:flutter_module/page/ScaffoldRoute.dart';
 import 'package:flutter_module/page/stack.dart';
 
 import 'flutter2android/HomePageCallback.dart';
+import 'generated/l10n.dart';
 import 'list/Product.dart';
 import 'list/ProductListPage.dart';
 import 'material_demo_types.dart';
@@ -53,10 +56,21 @@ class MyApp extends StatelessWidget {
         '/four': (context) => const GridListDemo(type: GridListDemoType.header),
         '/five': (context) => const StackDemo(),
         '/six': (context) => const LayoutBuilderRoute(),
+        '/seven': (context) => const LoginPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+
+      // 设置语言
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      // 将zh设置为第一项,没有适配语言时，英语为首选项
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }

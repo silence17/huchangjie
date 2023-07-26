@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/widget/MyAppBar.dart';
 
+import '../generated/l10n.dart';
 import '../utils/LayoutLogPrint.dart';
 
 /*
@@ -49,9 +50,10 @@ class LayoutBuilderRoute extends StatelessWidget {
     // Column在本示例中在水平方向的最大宽度为屏幕的宽度
     return Scaffold(
       //自定义title bar
-      appBar: const MyAppBar(
-        isBack: false,
+      appBar: MyAppBar(
         //centerTitle: '测试MyTitle',
+        centerTitle: S.of(context).title,
+        isBack: false,
         actionName: '分享',
       ),
       body: Container(
@@ -69,6 +71,7 @@ class LayoutBuilderRoute extends StatelessWidget {
           ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
           child: Column(
             children: [
+              Text(S.of(context).title),
               // 限制宽度为190，小于 200
               // SizedBox(width: 190, child: ResponsiveColumn(children: _children)),
               ResponsiveColumn(children: _children),

@@ -7,16 +7,16 @@ import 'package:flutter_module/widget/my_button.dart';
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar(
       {super.key,
-      this.backgroundColor,
       this.centerTitle = '',
+      this.backgroundColor,
       this.actionName = '',
       this.backImg = 'assets/images/ic_back_black.png',
       this.backImgColor,
       this.onPressed,
       this.isBack = true});
 
+  final String? centerTitle;
   final Color? backgroundColor;
-  final String centerTitle;
   final String backImg;
   final Color? backImgColor;
   final String actionName;
@@ -81,12 +81,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       namesRoute: true,
       header: true,
       child: Container(
-        alignment:
-            centerTitle.isEmpty ? Alignment.centerLeft : Alignment.center,
+        alignment: (centerTitle == null || centerTitle!.isEmpty)
+            ? Alignment.centerLeft
+            : Alignment.center,
         width: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 48.0),
         child: Text(
-          centerTitle,
+          (centerTitle == null || centerTitle!.isEmpty) ? "" : centerTitle!,
           style: const TextStyle(fontSize: 18),
         ),
       ),
