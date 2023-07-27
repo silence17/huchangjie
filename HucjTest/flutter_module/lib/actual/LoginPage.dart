@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_module/widget/EditTextField.dart';
 import 'package:flutter_module/widget/MyAppBar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,23 +18,42 @@ class _LoginPage extends State<LoginPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pwdController = TextEditingController();
 
+  final FocusNode _nodeText1 = FocusNode();
+  final FocusNode _nodeText2 = FocusNode();
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MyAppBar(
+    return Scaffold(
+      appBar: const MyAppBar(
         centerTitle: '登陆',
         isBack: false,
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
-
-
-
-
-          ],
+          children: _buildBody,
         ),
       ),
     );
   }
+
+  List<Widget> get _buildBody => <Widget>[
+        EditTextField(
+          key: const Key('phone'),
+          keyName: 'phone',
+          focusNode: _nodeText1,
+          isInputPwd: false,
+          controller: _nameController,
+          keyboardType: TextInputType.phone,
+          hintText: '请输入手机号',
+        ),
+        EditTextField(
+          key: const Key('password'),
+          keyName: 'password',
+          focusNode: _nodeText2,
+          isInputPwd: true,
+          controller: _pwdController,
+          keyboardType: TextInputType.visiblePassword,
+          hintText: '请输入密码',
+        ),
+      ];
 }
