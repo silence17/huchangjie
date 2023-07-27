@@ -102,6 +102,7 @@ class _LoginPage extends State<LoginPage> with ChangeNotifierMixin {
             keyboardType: TextInputType.phone,
             hintText: '请输入手机号',
             textStyle: const TextStyle(fontSize: 13),
+            maxLines: 1,
           ),
         ),
         EditTextField(

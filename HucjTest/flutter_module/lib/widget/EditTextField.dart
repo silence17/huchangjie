@@ -6,14 +6,15 @@ class EditTextField extends StatefulWidget {
   const EditTextField(
       {super.key,
       required this.controller,
-      this.maxLength = 100,
+      this.maxLength = 999999999,
       this.keyboardType = TextInputType.text,
       this.hintText = '',
       this.autoFocus = false,
       this.focusNode,
       this.isInputPwd = false,
       this.keyName,
-      this.textStyle});
+      this.textStyle,
+      this.maxLines = 999999999});
 
   final TextEditingController controller;
   final int maxLength;
@@ -26,6 +27,9 @@ class EditTextField extends StatefulWidget {
   final bool isInputPwd;
   final String? keyName;
   final TextStyle? textStyle;
+
+  //显示最大行数
+  final int maxLines;
 
   @override
   State<StatefulWidget> createState() => _EditTextField();
@@ -77,6 +81,8 @@ class _EditTextField extends State<EditTextField> {
       style: widget.textStyle,
       textInputAction: TextInputAction.done,
       keyboardType: widget.keyboardType,
+      maxLines: widget.isInputPwd && !_isShowPwd ? 1 : widget.maxLines,
+      minLines: 1,
       //限制输入
       inputFormatters: (widget.keyboardType == TextInputType.number ||
               widget.keyboardType == TextInputType.phone)
