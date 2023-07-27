@@ -12,7 +12,8 @@ class EditTextField extends StatefulWidget {
       this.autoFocus = false,
       this.focusNode,
       this.isInputPwd = false,
-      this.keyName});
+      this.keyName,
+      this.textStyle});
 
   final TextEditingController controller;
   final int maxLength;
@@ -24,6 +25,7 @@ class EditTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final bool isInputPwd;
   final String? keyName;
+  final TextStyle? textStyle;
 
   @override
   State<StatefulWidget> createState() => _EditTextField();
@@ -64,7 +66,6 @@ class _EditTextField extends State<EditTextField> {
 
   @override
   Widget build(BuildContext context) {
-
     //输入框
     Widget textField = TextField(
       focusNode: widget.focusNode,
@@ -73,6 +74,7 @@ class _EditTextField extends State<EditTextField> {
       obscureText: widget.isInputPwd && !_isShowPwd,
       autofocus: widget.autoFocus,
       controller: widget.controller,
+      style: widget.textStyle,
       textInputAction: TextInputAction.done,
       keyboardType: widget.keyboardType,
       //限制输入
@@ -85,19 +87,19 @@ class _EditTextField extends State<EditTextField> {
       //InputDecoration 主要为 TextField 提供各种样式排版布局
       decoration: InputDecoration(
         //contentPadding | 内间距，默认值与 border 以及 isDense 有关
-        contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+        contentPadding: const EdgeInsets.symmetric(vertical: 0),
         hintText: widget.hintText,
         //备注文本，位于输入框右下角外侧，与 counter 不能同时使用
         counterText: '',
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.yellow,
+            color: Colors.blueAccent,
             width: 0.8,
           ),
         ),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.blue,
+            color: Colors.black38,
             width: 0.8,
           ),
         ),
