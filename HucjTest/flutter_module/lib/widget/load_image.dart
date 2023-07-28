@@ -6,7 +6,7 @@ import '../utils/image_utils.dart';
 /// 图片加载（支持本地与网络图片）
 class LoadImage extends StatelessWidget {
   
-  const LoadImage(this.image, {
+  const LoadImage(this.imagePath, {
     super.key,
     this.width, 
     this.height,
@@ -17,7 +17,7 @@ class LoadImage extends StatelessWidget {
     this.cacheHeight,
   });
   
-  final String image;
+  final String imagePath;
   final double? width;
   final double? height;
   final BoxFit fit;
@@ -29,10 +29,10 @@ class LoadImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    if (image.isEmpty || image.startsWith('http')) {
+    if (imagePath.isEmpty || imagePath.startsWith('http')) {
       final Widget holder = LoadAssetImage(holderImg, height: height, width: width, fit: fit);
       return CachedNetworkImage(
-        imageUrl: image,
+        imageUrl: imagePath,
         placeholder: (_, __) => holder,
         errorWidget: (_, __, dynamic error) => holder,
         width: width,
@@ -42,7 +42,7 @@ class LoadImage extends StatelessWidget {
         memCacheHeight: cacheHeight,
       );
     } else {
-      return LoadAssetImage(image,
+      return LoadAssetImage(imagePath,
         height: height,
         width: width,
         fit: fit,

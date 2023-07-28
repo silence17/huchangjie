@@ -5,7 +5,6 @@ import '../res/colors.dart';
 
 /// 默认字号18，白字蓝底，高度48
 class MyButton extends StatelessWidget {
-
   const MyButton({
     super.key,
     this.text = '',
@@ -27,10 +26,12 @@ class MyButton extends StatelessWidget {
   final Color? textColor;
   final Color? disabledTextColor;
   final Color? backgroundColor;
+
+  //未设置onPressed为disable状态
   final Color? disabledBackgroundColor;
+  final VoidCallback? onPressed;
   final double? minHeight;
   final double? minWidth;
-  final VoidCallback? onPressed;
   final EdgeInsetsGeometry padding;
   final double radius;
   final BorderSide side;

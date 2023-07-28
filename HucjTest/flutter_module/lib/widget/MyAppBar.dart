@@ -88,7 +88,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         margin: const EdgeInsets.symmetric(horizontal: 48.0),
         child: Text(
           (centerTitle == null || centerTitle!.isEmpty) ? "" : centerTitle!,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 16),
         ),
       ),
     );

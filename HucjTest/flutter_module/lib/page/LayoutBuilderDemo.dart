@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/widget/MyAppBar.dart';
+import 'package:oktoast/oktoast.dart';
 
 import '../generated/l10n.dart';
 import '../utils/LayoutLogPrint.dart';
@@ -55,6 +56,9 @@ class LayoutBuilderRoute extends StatelessWidget {
         centerTitle: S.of(context).title,
         isBack: false,
         actionName: '分享',
+        onPressed: () {
+          showToast("分享成功");
+        },
       ),
       body: Container(
           height: double.infinity,
