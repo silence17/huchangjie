@@ -9,6 +9,8 @@ import 'package:flutter_module/page/ScaffoldRoute.dart';
 import 'package:flutter_module/page/stack.dart';
 import 'package:oktoast/oktoast.dart';
 
+import 'actual/OrderListPage.dart';
+import 'actual/OrderPage.dart';
 import 'flutter2android/HomePageCallback.dart';
 import 'generated/l10n.dart';
 import 'list/Product.dart';
@@ -65,6 +67,8 @@ class MyApp extends StatelessWidget {
             '/five': (context) => const StackDemo(),
             '/six': (context) => const LayoutBuilderRoute(),
             '/seven': (context) => const LoginPage(),
+            '/eight': (context) => const OrderPage(),
+            //'/nine': (context) => const OrderListPage(index: 1,),
           },
           theme: ThemeData(
             primarySwatch: Colors.blue,

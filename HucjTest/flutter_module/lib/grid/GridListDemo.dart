@@ -9,7 +9,6 @@ import '../material_demo_types.dart';
 // BEGIN gridListsDemo
 
 class GridListDemo extends StatelessWidget {
-
   const GridListDemo({super.key, required this.type});
 
   final GridListDemoType type;
@@ -97,7 +96,6 @@ class _GridTitleText extends StatelessWidget {
   }
 }
 
-
 /*
  * item
  */
@@ -123,8 +121,12 @@ class _GridDemoPhotoItem extends StatelessWidget {
             // package: 'flutter_gallery_assets',
             fit: BoxFit.cover,
           ),
-          onTap:() {
-            Navigator.of(context).pushNamed('/seven');
+          onTap: () {
+            if (photo.assetName.contains('pic2')) {
+              Navigator.of(context).pushNamed('/eight');
+            } else {
+              Navigator.of(context).pushNamed('/seven');
+            }
           },
         ),
       ),
