@@ -4,6 +4,7 @@ import 'package:flutter_module/actual/OrderListPage.dart';
 import 'package:flutter_module/utils/my_flexible_space_bar.dart';
 import 'package:flutter_module/utils/screen_utils.dart';
 import 'package:flutter_module/utils/theme_utils.dart';
+import 'package:flutter_module/widget/CardView.dart';
 import 'package:flutter_module/widget/load_image.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,6 @@ import 'package:provider/provider.dart';
 import '../provider/OrderPageProvider.dart';
 import '../res/colors.dart';
 import '../utils/image_utils.dart';
-import '../widget/my_card.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
@@ -116,6 +116,7 @@ class _OrderPage extends State<OrderPage>
                   key: const Key('pageView'),
                   itemCount: 5,
                   controller: _pageController,
+                  //page view每个page页面对一个OrderListPage对象
                   itemBuilder: (context, index) => OrderListPage(index: index),
                 ),
               ),
@@ -188,7 +189,7 @@ class _OrderPage extends State<OrderPage>
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: MyCard(
+              child: CardView(
                 child: Container(
                   height: 80.0,
                   padding: const EdgeInsets.only(top: 8.0),

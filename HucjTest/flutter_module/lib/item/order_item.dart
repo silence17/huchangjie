@@ -3,7 +3,7 @@ import 'package:flutter_module/res/colors.dart';
 import 'package:flutter_module/res/gaps.dart';
 import 'package:flutter_module/res/styles.dart';
 import 'package:flutter_module/utils/theme_utils.dart';
-import 'package:flutter_module/widget/my_card.dart';
+import 'package:flutter_module/widget/CardView.dart';
 
 import '../res/dimens.dart';
 
@@ -26,7 +26,7 @@ class OrderItem extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
-      child: MyCard(
+      child: CardView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: InkWell(

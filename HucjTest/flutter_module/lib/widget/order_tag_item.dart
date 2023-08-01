@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/utils/theme_utils.dart';
+import 'package:flutter_module/widget/CardView.dart';
 
 import '../res/gaps.dart';
 import 'load_image.dart';
-import 'my_card.dart';
 
 class OrderTagItem extends StatelessWidget {
 
@@ -20,7 +20,7 @@ class OrderTagItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
-      child: MyCard(
+      child: CardView(
         child: Container(
           height: 34.0,
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
