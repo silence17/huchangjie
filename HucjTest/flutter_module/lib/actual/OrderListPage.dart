@@ -77,6 +77,9 @@ class _OrderListPageState extends State<OrderListPage> with AutomaticKeepAliveCl
             sliver: _list.isEmpty ? SliverFillRemaining(child: StateLayout(type: _stateType)) :
             SliverList(
               delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+
+                print('SliverChildBuilderDelegate: $index ' );
+
                 return index < _list.length ?
                 (index % 5 == 0 ?
                 const OrderTagItem(date: '2021年2月5日', orderTotal: 4) :

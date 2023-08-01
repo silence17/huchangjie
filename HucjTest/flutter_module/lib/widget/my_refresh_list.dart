@@ -98,6 +98,9 @@ class _DeerListViewState extends State<DeerListView> {
 
 }
 
+/*
+ * 加载更多
+ */
 class MoreWidget extends StatelessWidget {
   
   const MoreWidget(this.itemCount, this.hasMore, this.pageSize, {super.key});
