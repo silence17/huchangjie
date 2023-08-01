@@ -27,9 +27,9 @@ class OrderTagItem extends StatelessWidget {
           child: Row(
             children: <Widget>[
               if (context.isDark)
-                const LoadAssetImage('order/icon_calendar_dark', width: 14.0, height: 14.0) 
+                const LoadAssetImage('icon_calendar_dark', width: 14.0, height: 14.0)
               else
-                const LoadAssetImage('order/icon_calendar', width: 14.0, height: 14.0),
+                const LoadAssetImage('icon_calendar', width: 14.0, height: 14.0),
               Gaps.hGap10,
               Text(date),
               const Expanded(child: Gaps.empty),

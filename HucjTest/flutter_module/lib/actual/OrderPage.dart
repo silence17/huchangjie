@@ -8,7 +8,7 @@ import 'package:flutter_module/widget/load_image.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/OrderProvider.dart';
+import '../provider/OrderPageProvider.dart';
 import '../res/colors.dart';
 import '../utils/image_utils.dart';
 import '../widget/my_card.dart';
@@ -24,12 +24,12 @@ class _OrderPage extends State<OrderPage>
     with
         AutomaticKeepAliveClientMixin<OrderPage>,
         SingleTickerProviderStateMixin {
+  //切换页面发送通知，在OrderListPage.dart中接收刷新页面
   OrderPageProvider provider = OrderPageProvider();
   final PageController _pageController = PageController();
 
   //tab bar
   TabController? _tabController;
-
   int _lastReportedPage = 0;
 
   Future<void> _onPageChange(int index) async {
