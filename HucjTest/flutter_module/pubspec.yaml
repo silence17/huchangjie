@@ -46,8 +46,14 @@ dependencies:
   # https://pub.dev/packages/shared_preferences
   shared_preferences: ^2.2.0
   synchronized: ^3.1.0
-  # 状态管理 https://github.com/rrousselGit/provider
+  # 刷新 https://github.com/xuelongqy/flutter_easy_refresh
   provider: ^6.0.5
+  # 下拉上拉刷新 https://github.com/rrousselGit/provider
+  easy_refresh: ^3.3.2+1
+  # dart io库
+  path_provider: ^2.0.2
+  # 网络库 https://github.com/cfug/dio
+  dio: ^5.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_module/actual/LoginPage.dart';
-import 'package:flutter_module/grid/GridListDemo.dart';
+import 'package:flutter_module/page/GridListDemo.dart';
 import 'package:flutter_module/page/LayoutBuilderDemo.dart';
 import 'package:flutter_module/page/ScaffoldRoute.dart';
 import 'package:flutter_module/page/stack.dart';
@@ -11,6 +11,7 @@ import 'package:oktoast/oktoast.dart';
 
 import 'actual/OrderListPage.dart';
 import 'actual/OrderPage.dart';
+import 'actual/RefreshPage.dart';
 import 'flutter2android/HomePageCallback.dart';
 import 'generated/l10n.dart';
 import 'list/Product.dart';
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
             '/six': (context) => const LayoutBuilderRoute(),
             '/seven': (context) => const LoginPage(),
             '/eight': (context) => const OrderPage(),
-            //'/nine': (context) => const OrderListPage(index: 1,),
+            '/nine': (context) => const RefreshPage(),
           },
           theme: ThemeData(
             primarySwatch: Colors.blue,

@@ -125,7 +125,7 @@ class _GridDemoPhotoItem extends StatelessWidget {
             if (photo.assetName.contains('pic2')) {
               Navigator.of(context).pushNamed('/eight');
             } else {
-              Navigator.of(context).pushNamed('/seven');
+              Navigator.of(context).pushNamed('/nine');
             }
           },
         ),

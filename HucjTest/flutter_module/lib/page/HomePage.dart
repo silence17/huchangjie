@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../widget/point/PointerMoveIndicator.dart';
 
@@ -24,11 +27,13 @@ class _MyHomePageState extends State<MyHomePage>
     with WidgetsBindingObserver, AutomaticKeepAliveClientMixin {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
     //需要刷新 UI 时,触发 Widget 的重新构建
     setState(() {
       _counter++;
     });
+
+    await (await _getLocalFile()).writeAsString('$_counter');
   }
 
   @override
@@ -36,10 +41,12 @@ class _MyHomePageState extends State<MyHomePage>
     super.setState(fn);
   }
 
-  void _jumpOtherPage() {
-    print("jump other page");
 
-    Navigator.of(context).pushNamed('/second');
+  /*
+   * 发送网络请求使用 dart io库
+   */
+  void _request() {
+
   }
 
   /*
@@ -53,6 +60,12 @@ class _MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    //从文件中读取点击数量
+    _readFile().then((int value) {
+      setState(() {
+        _counter = value;
+      });
+    });
   }
 
   /*
@@ -163,16 +176,19 @@ class _MyHomePageState extends State<MyHomePage>
             Text('随机数：$wordPair'),
             // 可以使用 BoxDecoration 来进行装饰，如背景，边框，或阴影等。 Container 还可以设置外边距、内边距和尺寸的约束条件等
             Container(
-                width: 200,
-                padding: const EdgeInsets.all(30),
-                margin: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.blue[100]),
-                child: IconButton(
-                    onPressed: _jumpOtherPage,
-                    icon: const Icon(Icons.abc),
-                    padding: const EdgeInsets.all(30))),
+              width: 200,
+              height: 100,
+              padding: const EdgeInsets.all(30),
+              margin: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.blue[100]),
+              child: IconButton(
+                // onPressed: _jumpOtherPage,
+                onPressed: _request,
+                icon: const Icon(Icons.search),
+              ),
+            ),
 
             buildRow(),
             const Wrap(
@@ -273,4 +289,28 @@ class _MyHomePageState extends State<MyHomePage>
    */
   @override
   bool get wantKeepAlive => true;
+
+  /*
+   * 获取文件
+   */
+  Future<File> _getLocalFile() async {
+    //获取应用目录
+    //在 iOS 上，这对应于NSDocumentDirectory。在 Android 上，这是AppData目录。
+    String dir = (await getApplicationDocumentsDirectory()).path;
+    return File('$dir/counter.txt');
+  }
+
+  /*
+   * 读取文件
+   */
+  Future<int> _readFile() async {
+    try {
+      File file = await _getLocalFile();
+      //读取点击次数
+      String contents = await file.readAsString();
+      return int.parse(contents);
+    } on FileSystemException {
+      return 0;
+    }
+  }
 }
