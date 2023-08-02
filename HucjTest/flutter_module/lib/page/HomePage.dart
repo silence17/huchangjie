@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,6 +27,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with WidgetsBindingObserver, AutomaticKeepAliveClientMixin {
   int _counter = 0;
+  String _response = '';
 
   void _incrementCounter() async {
     //需要刷新 UI 时,触发 Widget 的重新构建
@@ -41,12 +43,20 @@ class _MyHomePageState extends State<MyHomePage>
     super.setState(fn);
   }
 
-
   /*
    * 发送网络请求使用 dart io库
    */
-  void _request() {
+  void _request() async {
+    Dio dio = Dio();
+    String url =
+        // 'https://restapi.amap.com/v3/weather/weatherInfo?city=110101&key=45a48b4e81791fd4bfbb05f8975d42b7';
+        'https://restapi.amap.com/v3/weather/weatherInfo?key=45a48b4e81791fd4bfbb05f8975d42b7&city=110000&extensions=base';
 
+    Response response = await dio.get(url);
+    var data = response.data.toString();
+    setState(() {
+      _response = data;
+    });
   }
 
   /*
@@ -174,19 +184,21 @@ class _MyHomePageState extends State<MyHomePage>
                 )),
 
             Text('随机数：$wordPair'),
+
             // 可以使用 BoxDecoration 来进行装饰，如背景，边框，或阴影等。 Container 还可以设置外边距、内边距和尺寸的约束条件等
             Container(
-              width: 200,
+              width: double.infinity,
               height: 100,
-              padding: const EdgeInsets.all(30),
-              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
                   color: Colors.blue[100]),
-              child: IconButton(
-                // onPressed: _jumpOtherPage,
-                onPressed: _request,
-                icon: const Icon(Icons.search),
+              child: SingleChildScrollView(
+                child: GestureDetector(
+                  onTap: _request,
+                  child: Text(_response),
+                ),
               ),
             ),
 
