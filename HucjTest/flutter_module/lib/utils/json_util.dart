@@ -96,4 +96,11 @@ class JsonUtil {
       return v as T;
     }).toList();
   }
+
+  /*
+   * String 转 map
+   */
+  static Map<String, dynamic> parseMap(String sourceJson) {
+    return json.decode(sourceJson) as Map<String, dynamic>;
+  }
 }
