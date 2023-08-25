@@ -77,9 +77,9 @@ class DioUtil {
    */
   Future<BaseEntity<T>> _request<T>(String method, String url,
       {Object? data,
-        Map<String, dynamic>? queryParameters,
-        CancelToken? cancelToken,
-        Options? options}) async {
+      Map<String, dynamic>? queryParameters,
+      CancelToken? cancelToken,
+      Options? options}) async {
     options ??= Options();
     options.method = method;
 
@@ -101,8 +101,11 @@ class DioUtil {
 
   /*
    * open方法，对外公开调用网络请求的方法
+   * 异步调用
    */
-  Future<dynamic> requestNetwork<T>(Method method, String url, {
+  Future<dynamic> requestNetwork<T>(
+    Method method,
+    String url, {
     NetSuccessCallback<T?>? onSuccess,
     NetErrorCallback? onError,
     Object? params,
@@ -110,14 +113,46 @@ class DioUtil {
     CancelToken? cancelToken,
     Options? options,
   }) {
-    return _request(method.value, url,
-        data: params,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken
-    ).then<void>((BaseEntity<T> result) {
+    return _request<T>(method.value, url,
+            data: params,
+            queryParameters: queryParameters,
+            options: options,
+            cancelToken: cancelToken)
+        .then<void>((BaseEntity<T> result) {
       if (result.code == 0) {
         onSuccess?.call(result.data);
+      } else {
+        _onError(result.code, result.message, onError);
+      }
+    }, onError: (dynamic e) {
+      _cancelLogPrint(e, url);
+      final NetError error = ExceptionHandle.handleException(e);
+      _onError(error.code, error.msg, onError);
+    });
+  }
+
+  /*
+   * open方法，对外公开调用网络请求的方法
+   */
+  void asyncRequestNetwork<T>(Method method, String url,
+      {NetSuccessCallback<T?>? onSuccess,
+      NetErrorCallback? onError,
+      Object? params,
+      Map<String, dynamic>? queryParameters,
+      CancelToken? cancelToken,
+      Options? options}) {
+    Stream.fromFuture(_request<T>(method.value, url,
+            data: params,
+            queryParameters: queryParameters,
+            options: options,
+            cancelToken: cancelToken))
+        //通过Stream的asBroadcastStream()或StreamController的broadcast将单订阅的流转换为多订阅流
+        .asBroadcastStream()
+        .listen((result) {
+      if (result.code == 0) {
+        if (onSuccess != null) {
+          onSuccess(result.data);
+        }
       } else {
         _onError(result.code, result.message, onError);
       }
@@ -142,5 +177,4 @@ class DioUtil {
     Log.e('接口请求异常： code: $code, mag: $msg');
     onError?.call(code, msg);
   }
-
 }
