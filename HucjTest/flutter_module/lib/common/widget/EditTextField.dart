@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_module/widget/load_image.dart';
+import 'package:flutter_module/common/widget/load_image.dart';
 
 class EditTextField extends StatefulWidget {
   const EditTextField(

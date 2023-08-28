@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_module/utils/SpUtil.dart';
-import 'package:flutter_module/widget/EditTextField.dart';
-import 'package:flutter_module/widget/MyAppBar.dart';
-import 'package:flutter_module/widget/my_button.dart';
+import 'package:flutter_module/common/widget/EditTextField.dart';
+import 'package:flutter_module/common/widget/MyAppBar.dart';
+import 'package:flutter_module/common/widget/my_button.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '../common/constant.dart';
-import '../utils/ChangeNotifierMixin.dart';
+import '../common/utils/ChangeNotifierMixin.dart';
+import '../common/utils/SpUtil.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

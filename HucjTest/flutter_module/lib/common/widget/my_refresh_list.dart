@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_module/utils/theme_utils.dart';
-import 'package:flutter_module/widget/state_layout.dart';
+import 'package:flutter_module/common/utils/theme_utils.dart';
+import 'package:flutter_module/common/widget/state_layout.dart';
 
-import '../res/gaps.dart';
-import '../res/styles.dart';
+import '../../res/gaps.dart';
+import '../../res/styles.dart';
 
 /// 封装下拉刷新与加载更多
 class DeerListView extends StatefulWidget {

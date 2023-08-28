@@ -1,7 +1,7 @@
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_module/widget/MyAppBar.dart';
 
+import '../common/widget/MyAppBar.dart';
 import '../item/order_item.dart';
 
 class RefreshPage extends StatefulWidget {

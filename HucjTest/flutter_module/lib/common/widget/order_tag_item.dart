@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_module/utils/theme_utils.dart';
-import 'package:flutter_module/widget/CardView.dart';
+import 'package:flutter_module/common/widget/load_image.dart';
+import 'package:flutter_module/common/utils/theme_utils.dart';
+import 'package:flutter_module/common/widget/CardView.dart';
 
-import '../res/gaps.dart';
-import 'load_image.dart';
+import '../../res/gaps.dart';
 
 class OrderTagItem extends StatelessWidget {
 

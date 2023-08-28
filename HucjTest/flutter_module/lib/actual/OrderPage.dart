@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_module/actual/OrderListPage.dart';
-import 'package:flutter_module/utils/my_flexible_space_bar.dart';
-import 'package:flutter_module/utils/screen_utils.dart';
-import 'package:flutter_module/utils/theme_utils.dart';
-import 'package:flutter_module/widget/CardView.dart';
-import 'package:flutter_module/widget/load_image.dart';
+import 'package:flutter_module/common/utils/screen_utils.dart';
+import 'package:flutter_module/common/utils/theme_utils.dart';
+import 'package:flutter_module/common/widget/CardView.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
+import '../common/utils/image_utils.dart';
+import '../common/utils/my_flexible_space_bar.dart';
+import '../common/widget/load_image.dart';
 import '../provider/OrderPageProvider.dart';
 import '../res/colors.dart';
-import '../utils/image_utils.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});

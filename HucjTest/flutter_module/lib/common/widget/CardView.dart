@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_module/utils/theme_utils.dart';
+import 'package:flutter_module/common/utils/theme_utils.dart';
 
-import '../res/colors.dart';
+import '../../res/colors.dart';
 
 class CardView extends StatelessWidget {
   const CardView(

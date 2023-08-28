@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_module/widget/MyAppBar.dart';
+import 'package:flutter_module/common/utils/LayoutLogPrint.dart';
+import 'package:flutter_module/common/widget/MyAppBar.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '../generated/l10n.dart';
-import '../utils/LayoutLogPrint.dart';
 
 /*
  * 相当于自定义组件

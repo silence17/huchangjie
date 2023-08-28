@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_module/utils/error_handle.dart';
-import 'package:flutter_module/utils/net/BaseEntity.dart';
-import 'package:flutter_module/utils/net/Method.dart';
+import 'package:flutter_module/common/net/BaseEntity.dart';
 
-import '../log_utils.dart';
+import '../utils/error_handle.dart';
+import '../utils/log_utils.dart';
+import 'Method.dart';
 
 //链接超时时间
 Duration _connectTimeout = const Duration(seconds: 15);
@@ -42,6 +42,7 @@ class DioUtil {
   //比如它可能会从缓存中返回一个已有的实例，或者是返回子类的实例。
   factory DioUtil() => _singleton;
 
+
   //私有构造方法
   DioUtil._() {
     final BaseOptions options = BaseOptions(
@@ -68,12 +69,15 @@ class DioUtil {
 
   static final DioUtil _singleton = DioUtil._();
 
+  static DioUtil get instance => DioUtil();
+
   static late Dio _dio;
 
   Dio get dio => _dio;
 
   /*
    * 真是的网络请求
+   * async 异步函数
    */
   Future<BaseEntity<T>> _request<T>(String method, String url,
       {Object? data,
@@ -118,6 +122,7 @@ class DioUtil {
             queryParameters: queryParameters,
             options: options,
             cancelToken: cancelToken)
+    //注册回调
         .then<void>((BaseEntity<T> result) {
       if (result.code == 0) {
         onSuccess?.call(result.data);

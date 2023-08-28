@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/item/order_item.dart';
 import 'package:flutter_module/provider/OrderPageProvider.dart';
-import 'package:flutter_module/utils/ChangeNotifierMixin.dart';
-import 'package:flutter_module/widget/my_refresh_list.dart';
-import 'package:flutter_module/widget/order_tag_item.dart';
-import 'package:flutter_module/widget/state_layout.dart';
+import 'package:flutter_module/common/widget/order_tag_item.dart';
+import 'package:flutter_module/common/widget/state_layout.dart';
 import 'package:provider/provider.dart';
+
+import '../common/utils/ChangeNotifierMixin.dart';
+import '../common/widget/my_refresh_list.dart';
 
 class OrderListPage extends StatefulWidget {
 

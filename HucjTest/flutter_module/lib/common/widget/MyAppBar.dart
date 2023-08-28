@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_module/res/colors.dart';
-import 'package:flutter_module/utils/theme_utils.dart';
-import 'package:flutter_module/widget/my_button.dart';
+import 'package:flutter_module/common/utils/theme_utils.dart';
+import 'package:flutter_module/common/widget/my_button.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar(

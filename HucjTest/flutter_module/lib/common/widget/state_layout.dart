@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_module/utils/theme_utils.dart';
-
-import 'load_image.dart';
+import 'package:flutter_module/common/widget/load_image.dart';
+import 'package:flutter_module/common/utils/theme_utils.dart';
 
 /// design/9暂无状态页面/index.html#artboard3
 class StateLayout extends StatelessWidget {
