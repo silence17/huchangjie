@@ -76,7 +76,7 @@ class DioUtil {
   Dio get dio => _dio;
 
   /*
-   * 真是的网络请求
+   * 真实的网络请求
    * async 异步函数
    */
   Future<BaseEntity<T>> _request<T>(String method, String url,
