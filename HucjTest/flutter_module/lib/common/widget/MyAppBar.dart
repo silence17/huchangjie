@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_module/res/colors.dart';
 import 'package:flutter_module/common/utils/theme_utils.dart';
 import 'package:flutter_module/common/widget/my_button.dart';
+import 'package:flutter_module/res/colors.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar(
@@ -76,7 +76,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           )
         : const SizedBox.shrink();
 
-    //title
+    // title
+    // 用于描述Widget的含义最终达到描述应用程序的UI。这些描述可以通过辅助工具、搜索引擎和其他语义分析软件使用。
+    // 它有点像HTML5的语义元素，在Android、iOS上更多是用于读屏，帮助一些有视力障碍的人使用我们的软件
     final Widget titleWidget = Semantics(
       namesRoute: true,
       header: true,
@@ -97,6 +99,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         value: overlayStyle,
         child: Material(
           color: bgColor,
+          //SafeArea 用于填充类似于刘海屏、异形屏之类的屏幕的边距, 在其中加入 padding
           child: SafeArea(
             top: true,
             child: Stack(

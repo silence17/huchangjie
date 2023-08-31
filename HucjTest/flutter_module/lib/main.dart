@@ -1,17 +1,23 @@
 import 'dart:ui';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_module/actual/LoginPage.dart';
 import 'package:flutter_module/page/GridListDemo.dart';
 import 'package:flutter_module/page/LayoutBuilderDemo.dart';
 import 'package:flutter_module/page/ScaffoldRoute.dart';
+import 'package:flutter_module/page/my_center_page.dart';
 import 'package:flutter_module/page/stack.dart';
 import 'package:oktoast/oktoast.dart';
 
-import 'actual/OrderListPage.dart';
 import 'actual/OrderPage.dart';
 import 'actual/RefreshPage.dart';
+import 'common/GlobalConfig.dart';
+import 'common/constant.dart';
+import 'common/net/interceptor/DioLogInterceptor.dart';
+import 'common/net/DioUtil.dart';
+import 'common/utils/log_utils.dart';
 import 'flutter2android/HomePageCallback.dart';
 import 'generated/l10n.dart';
 import 'list/Product.dart';
@@ -26,7 +32,7 @@ Widget _createWidget(String routeName) {
   //获取启动传递的参数
   print("routeName= $routeName");
 
-  return const MyApp();
+  return MyApp();
 }
 
 /*
@@ -34,7 +40,10 @@ Widget _createWidget(String routeName) {
  * 无状态组件只是在构建的时候渲染一次，不支持动态变化，即无法通过其他用户操作重绘组件
  */
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key}) {
+    Log.init();
+    _initDio();
+  }
 
   // This widget is the root of your application.
   // build 在每次界面刷新的时候都会调用，所以不要在 build 里写业务逻辑
@@ -70,6 +79,7 @@ class MyApp extends StatelessWidget {
             '/seven': (context) => const LoginPage(),
             '/eight': (context) => const OrderPage(),
             '/nine': (context) => const RefreshPage(),
+            '/ten': (context) => const MyCenter(),
           },
           theme: ThemeData(
             primarySwatch: Colors.blue,
@@ -85,5 +95,22 @@ class MyApp extends StatelessWidget {
           // 将zh设置为第一项,没有适配语言时，英语为首选项
           supportedLocales: S.delegate.supportedLocales,
         ));
+  }
+
+  void _initDio() {
+    final List<Interceptor> interceptors = <Interceptor>[];
+
+    /// 打印Log(生产模式去除)
+    if (!Constant.inProduction) {
+      interceptors.add(DioLogInterceptor());
+    }
+
+    /// 适配数据(根据自己的数据结构，可自行选择添加)
+    //interceptors.add(AdapterInterceptor());
+    configDio(
+      baseUrl: GlobalConfig.test_host,
+      // baseUrl: 'https://api.github.com/',
+      interceptors: interceptors,
+    );
   }
 }

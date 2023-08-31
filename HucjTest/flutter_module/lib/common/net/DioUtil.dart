@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -14,7 +15,7 @@ Duration _connectTimeout = const Duration(seconds: 15);
 Duration _receiveTimeout = const Duration(seconds: 15);
 Duration _sendTimeout = const Duration(seconds: 10);
 //域名
-String _baseUrl = "";
+String _baseUrl = '';
 //拦截器
 List<Interceptor> _interceptors = [];
 
@@ -42,18 +43,21 @@ class DioUtil {
   //比如它可能会从缓存中返回一个已有的实例，或者是返回子类的实例。
   factory DioUtil() => _singleton;
 
-
   //私有构造方法
   DioUtil._() {
     final BaseOptions options = BaseOptions(
       connectTimeout: _connectTimeout,
       receiveTimeout: _receiveTimeout,
       sendTimeout: _sendTimeout,
+
+      /// dio默认json解析，这里指定返回UTF8字符串，自己处理解析。（可也以自定义Transformer实现）
+      responseType: ResponseType.plain,
       validateStatus: (_) {
         // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
         return true;
       },
       baseUrl: _baseUrl,
+//      contentType: Headers.formUrlEncodedContentType, // 适用于post form表单提交
     );
     _dio = Dio(options);
 
@@ -86,7 +90,7 @@ class DioUtil {
       Options? options}) async {
     options ??= Options();
     options.method = method;
-
+    _addCommonHeader(options);
     final Response<String> response = await _dio.request<String>(url,
         data: data,
         queryParameters: queryParameters,
@@ -122,7 +126,7 @@ class DioUtil {
             queryParameters: queryParameters,
             options: options,
             cancelToken: cancelToken)
-    //注册回调
+        //注册回调
         .then<void>((BaseEntity<T> result) {
       if (result.code == 0) {
         onSuccess?.call(result.data);
@@ -181,5 +185,26 @@ class DioUtil {
     }
     Log.e('接口请求异常： code: $code, mag: $msg');
     onError?.call(code, msg);
+  }
+
+  void _addCommonHeader(Options options) {
+    // header["token"] = MMKVUtils.instance.userToken ?: ""
+    // header["Authorization"] = MMKVUtils.instance.userToken ?: ""
+    // header["platform"] = "2"
+    // header["applicationCode"] = "3"
+    // header["version"] = CommonUtil.getVersionName()
+    // header["fromSource"] = ""
+    // // 业务类型1-个人（默认），2-企业
+    // header["businessType"] = UserUtil.businessType().toString()
+    var params = HashMap<String, dynamic>();
+    params['token'] = "";
+    params['Authorization'] = "";
+    params['platform'] = "2";
+    params['applicationCode'] = "3";
+    params['version'] = "1.0.0";
+    params['fromSource'] = "";
+    params['businessType'] = "1";
+
+    options.headers = params;
   }
 }

@@ -26,7 +26,7 @@ class GridListDemo extends StatelessWidget {
         subtitle: 'i',
       ),
       _Photo(
-        assetName: 'assets/images/pic2.jpg',
+        assetName: 'assets/images/pic3.jpg',
         title: 'e',
         subtitle: 'f',
       ),
@@ -122,10 +122,17 @@ class _GridDemoPhotoItem extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           onTap: () {
-            if (photo.assetName.contains('pic2')) {
-              Navigator.of(context).pushNamed('/eight');
-            } else {
-              Navigator.of(context).pushNamed('/nine');
+            switch (photo.title) {
+              case 'l':
+                Navigator.of(context).pushNamed('/eight');
+                break;
+              case 'h':
+                Navigator.of(context).pushNamed('/nine');
+                break;
+              case 'e':
+                Navigator.of(context).pushNamed('/ten');
+                break;
+              default:
             }
           },
         ),
