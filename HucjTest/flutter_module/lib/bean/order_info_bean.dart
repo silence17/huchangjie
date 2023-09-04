@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../common/net/i_net_json_2_bean.dart';
+
 /// 2.指定此类的代码生成文件(格式：part '类名.g.dart';)
 part 'order_info_bean.g.dart';
 
 /// notifyListeners();
 
 @JsonSerializable()
-class OrderInfoBean extends ChangeNotifier {
-  OrderInfoBean();
+class OrderInfoBean extends ChangeNotifier implements INetJson2Bean<OrderInfoBean> {
 
   //当日订单总金额
   @JsonKey(name: 'curDayTotalAmount')
-  String? curDayTotalAmount = "--";
+  String? curDayTotalAmount;
 
   //当日订单总数
   @JsonKey(name: 'curDayTotalOrder')
@@ -30,18 +31,22 @@ class OrderInfoBean extends ChangeNotifier {
   @JsonKey(name: 'lastDayTotalOrder')
   String? lastDayTotalOrder;
 
-  OrderInfoBean fromJson(Map<String, dynamic> json) => OrderInfoBean()
-    ..curDayTotalAmount = json['curDayTotalAmount'] as String?
-    ..curDayTotalOrder = json['curDayTotalOrder'] as String?
-    ..curDayUntreatedOrder = json['curDayUntreatedOrder'] as String?
-    ..lastDayTotalAmount = json['lastDayTotalAmount'] as String?
-    ..lastDayTotalOrder = json['lastDayTotalOrder'] as String?;
 
-  Map<String, dynamic> toJson(OrderInfoBean instance) => <String, dynamic>{
-        'curDayTotalAmount': instance.curDayTotalAmount,
-        'curDayTotalOrder': instance.curDayTotalOrder,
-        'curDayUntreatedOrder': instance.curDayUntreatedOrder,
-        'lastDayTotalAmount': instance.lastDayTotalAmount,
-        'lastDayTotalOrder': instance.lastDayTotalOrder,
-      };
+  OrderInfoBean(
+      this.curDayTotalAmount,
+      this.curDayTotalOrder,
+      this.curDayUntreatedOrder,
+      this.lastDayTotalAmount,
+      this.lastDayTotalOrder);
+
+  factory OrderInfoBean.fromJson(Map<String, dynamic> json) =>
+      _$OrderInfoBeanFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderInfoBeanToJson(this);
+
+
+  @override
+  OrderInfoBean fromJson(Map<String, dynamic> json) {
+    return OrderInfoBean.fromJson(json);
+  }
 }

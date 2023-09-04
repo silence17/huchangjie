@@ -2,18 +2,19 @@ import '../../common/constant.dart';
 import 'json_convert_content.dart';
 
 class BaseEntity<T> {
-  BaseEntity(this.code, this.message, this.data);
+
+  BaseEntity(this.status, this.msg, this.data);
 
   BaseEntity.fromJson(Map<String, dynamic> json) {
-    code = json[Constant.code] as int?;
-    message = json[Constant.message] as String;
+    status = json[Constant.code] as int?;
+    msg = json[Constant.message] as String;
     if (json.containsKey(Constant.data)) {
       data = _generateOBJ(json[Constant.data] as Object?);
     }
   }
 
-  int? code;
-  late String message;
+  int? status;
+  late String msg;
   T? data;
 
   T? _generateOBJ(Object? json) {

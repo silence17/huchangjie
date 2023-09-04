@@ -130,10 +130,10 @@ class DioUtil {
             cancelToken: cancelToken)
         //注册回调
         .then<void>((BaseEntity<T> result) {
-      if (result.code == 0) {
+      if (result.status == 0) {
         onSuccess?.call(result.data);
       } else {
-        _onError(result.code, result.message, onError);
+        _onError(result.status, result.msg, onError);
       }
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
@@ -160,12 +160,12 @@ class DioUtil {
         //通过Stream的asBroadcastStream()或StreamController的broadcast将单订阅的流转换为多订阅流
         .asBroadcastStream()
         .listen((result) {
-      if (result.code == 0) {
+      if (result.status == 0) {
         if (onSuccess != null) {
           onSuccess(result.data);
         }
       } else {
-        _onError(result.code, result.message, onError);
+        _onError(result.status, result.msg, onError);
       }
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
