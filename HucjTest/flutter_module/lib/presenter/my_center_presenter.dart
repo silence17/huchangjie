@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_module/bean/user_info_bean.dart';
 import 'package:flutter_module/common/api_url.dart';
@@ -26,8 +27,10 @@ class MyCenterPresenter extends BasePagePresenter<MyCenterContact> {
       var params = HashMap<String, String>();
       params['enterpriseId'] = '48564973adff4f95bec1adb2ee8d0c47';
 
+      var options = Options();
+      options.contentType = Headers.jsonContentType;
       //发起网络请求
-      asyncRequestNetwork(Method.post,
+      asyncRequestNetwork(Method.get,
           url: ApiUlr.crm_order_info,
           queryParameters: params,
           onSuccess: (data) {

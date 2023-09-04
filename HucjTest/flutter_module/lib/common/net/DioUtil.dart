@@ -91,6 +91,8 @@ class DioUtil {
     options ??= Options();
     options.method = method;
     _addCommonHeader(options);
+    options.contentType ??= Headers.jsonContentType;
+
     final Response<String> response = await _dio.request<String>(url,
         data: data,
         queryParameters: queryParameters,
@@ -187,23 +189,20 @@ class DioUtil {
     onError?.call(code, msg);
   }
 
+  /*
+   * 设置公共请求头
+   */
   void _addCommonHeader(Options options) {
-    // header["token"] = MMKVUtils.instance.userToken ?: ""
-    // header["Authorization"] = MMKVUtils.instance.userToken ?: ""
-    // header["platform"] = "2"
-    // header["applicationCode"] = "3"
-    // header["version"] = CommonUtil.getVersionName()
-    // header["fromSource"] = ""
-    // // 业务类型1-个人（默认），2-企业
-    // header["businessType"] = UserUtil.businessType().toString()
     var params = HashMap<String, dynamic>();
-    params['token'] = "";
-    params['Authorization'] = "";
+    params['token'] =
+        "59hK4WsuV1TR8haZPHfsze2BE9m/fGCUB3P1BnPa/hjEWM066k+VTr1lmztVCjOM62JYmMA8RhD2lh+d+myo+v++cuXXpAonnMcoxLgkG2zBOmWCS8gy7KuvZGgm27/OP+DTGb4Xw5VAMYs5ft3pjyios/j4Yo+q4k3n1yHJ4iHDFwmwpP6YcxoMvr8XPm6MEZ2yPFSKYWBDaWWASUHK4thuLllciuOCLapvYyVShTo=";
+    params['Authorization'] =
+        "59hK4WsuV1TR8haZPHfsze2BE9m/fGCUB3P1BnPa/hjEWM066k+VTr1lmztVCjOM62JYmMA8RhD2lh+d+myo+v++cuXXpAonnMcoxLgkG2zBOmWCS8gy7KuvZGgm27/OP+DTGb4Xw5VAMYs5ft3pjyios/j4Yo+q4k3n1yHJ4iHDFwmwpP6YcxoMvr8XPm6MEZ2yPFSKYWBDaWWASUHK4thuLllciuOCLapvYyVShTo=";
     params['platform'] = "2";
     params['applicationCode'] = "3";
     params['version'] = "1.0.0";
     params['fromSource'] = "";
-    params['businessType'] = "1";
+    params['businessType'] = "2";
 
     options.headers = params;
   }
