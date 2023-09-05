@@ -10,15 +10,15 @@ import 'package:provider/provider.dart';
 
 import '../presenter/my_center_presenter.dart';
 
-class MyCenter extends StatefulWidget {
-  const MyCenter({super.key});
+class MyCenterPage extends StatefulWidget {
+  const MyCenterPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _MyCenter();
 }
 
-class _MyCenter extends State<MyCenter>
-    with BasePageMixin<MyCenter, MyCenterPresenter>
+class _MyCenter extends State<MyCenterPage>
+    with BasePageMixin<MyCenterPage, MyCenterPresenter>
     implements MyCenterContact {
 
   @override

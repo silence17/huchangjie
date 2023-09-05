@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
             '/seven': (context) => const LoginPage(),
             '/eight': (context) => const OrderPage(),
             '/nine': (context) => const RefreshPage(),
-            '/ten': (context) => const MyCenter(),
+            '/ten': (context) => const MyCenterPage(),
           },
           theme: ThemeData(
             primarySwatch: Colors.blue,

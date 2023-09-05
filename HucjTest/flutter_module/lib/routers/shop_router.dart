@@ -14,7 +14,7 @@ class MyCenterRouter implements IRouterProvider{
 
   @override
   void initRouter(FluroRouter router) {
-    router.define(shopPage, handler: Handler(handlerFunc: (_, __) => const MyCenter()));
+    router.define(shopPage, handler: Handler(handlerFunc: (_, __) => const MyCenterPage()));
 
   }
 }
