@@ -9,7 +9,7 @@ part 'order_info_bean.g.dart';
 class OrderInfoBean extends ChangeNotifier {
   //当日订单总金额
   @JsonKey(name: 'curDayTotalAmount')
-  double? curDayTotalAmount = 43751.89;
+  double? curDayTotalAmount;
 
   //当日订单总数
   @JsonKey(name: 'curDayTotalOrder')
@@ -36,10 +36,14 @@ class OrderInfoBean extends ChangeNotifier {
       this.lastDayTotalAmount,
       this.lastDayTotalOrder);
 
-  void notify() {
+  void setDate(OrderInfoBean data) {
+    curDayTotalAmount = data.curDayTotalAmount;
+    curDayTotalOrder = data.curDayTotalOrder;
+    curDayUntreatedOrder = data.curDayUntreatedOrder;
+    lastDayTotalAmount = data.lastDayTotalAmount;
+    lastDayTotalOrder = data.lastDayTotalOrder;
     notifyListeners();
   }
-
 
   @override
   String toString() {

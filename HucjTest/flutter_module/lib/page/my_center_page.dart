@@ -208,7 +208,7 @@ class _MyCenter extends State<MyCenterPage>
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 19,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),

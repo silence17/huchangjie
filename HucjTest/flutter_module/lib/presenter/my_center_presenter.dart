@@ -36,8 +36,7 @@ class MyCenterPresenter extends BasePagePresenter<MyCenterContact> {
           onSuccess: (data) {
             if (data == null) return;
 
-            orderInfo = data;
-            orderInfo.notify();
+            orderInfo.setDate(data);
             Log.e(orderInfo.toString());
           },
           onError: (code, msg) => {showToast(msg)});
