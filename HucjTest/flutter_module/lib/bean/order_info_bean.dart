@@ -3,13 +3,13 @@ import 'package:json_annotation/json_annotation.dart';
 
 /// 2.指定此类的代码生成文件(格式：part '类名.g.dart';)
 part 'order_info_bean.g.dart';
-/// notifyListeners();
+
 
 @JsonSerializable()
 class OrderInfoBean extends ChangeNotifier {
   //当日订单总金额
   @JsonKey(name: 'curDayTotalAmount')
-  double? curDayTotalAmount;
+  double? curDayTotalAmount = 43751.89;
 
   //当日订单总数
   @JsonKey(name: 'curDayTotalOrder')
@@ -36,8 +36,14 @@ class OrderInfoBean extends ChangeNotifier {
       this.lastDayTotalAmount,
       this.lastDayTotalOrder);
 
-  void notify(){
+  void notify() {
     notifyListeners();
+  }
+
+
+  @override
+  String toString() {
+    return 'OrderInfoBean{curDayTotalAmount: $curDayTotalAmount, curDayTotalOrder: $curDayTotalOrder, curDayUntreatedOrder: $curDayUntreatedOrder, lastDayTotalAmount: $lastDayTotalAmount, lastDayTotalOrder: $lastDayTotalOrder}';
   }
 
   factory OrderInfoBean.fromJson(Map<String, dynamic> json) =>

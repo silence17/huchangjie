@@ -27,12 +27,12 @@ class _MyCenter extends State<MyCenter>
       body: SafeArea(
         child: Column(
           children: [
-            ChangeNotifierProvider(
+            ChangeNotifierProvider<UserInfoBean>(
               create: (context) => presenter!.userInfo,
               child: _drawTopView(),
             ),
             //_drawTopView(),
-            ChangeNotifierProvider(
+            ChangeNotifierProvider<OrderInfoBean>(
               create: (context) => presenter!.orderInfo,
               child: _drawOrderInfo(),
             ),
@@ -215,7 +215,7 @@ class _MyCenter extends State<MyCenter>
                         ),
                       ),
                       Text(
-                        "昨日： ¥${provider.curDayTotalOrder}",
+                        "昨日： ¥${provider.lastDayTotalAmount}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.justify,
@@ -245,7 +245,7 @@ class _MyCenter extends State<MyCenter>
                         margin: const EdgeInsets.symmetric(vertical: 5),
                         height: 29,
                         child: Text(
-                          "${provider.curDayTotalAmount}",
+                          "${provider.curDayTotalOrder}",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.justify,
@@ -257,7 +257,7 @@ class _MyCenter extends State<MyCenter>
                         ),
                       ),
                       Text(
-                        "昨日： ${provider.curDayTotalOrder}",
+                        "昨日： ${provider.lastDayTotalOrder}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.justify,
@@ -290,7 +290,7 @@ class _MyCenter extends State<MyCenter>
                         margin: const EdgeInsets.symmetric(vertical: 5),
                         height: 29,
                         child: Text(
-                          "${provider?.curDayTotalAmount}",
+                          "${provider.curDayUntreatedOrder}",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.justify,

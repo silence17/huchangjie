@@ -38,8 +38,7 @@ class MyCenterPresenter extends BasePagePresenter<MyCenterContact> {
 
             orderInfo = data;
             orderInfo.notify();
-            var prompt = data.lastDayTotalAmount.toString();
-            showToast(prompt ?? "请求成功");
+            Log.e(orderInfo.toString());
           },
           onError: (code, msg) => {showToast(msg)});
     });
