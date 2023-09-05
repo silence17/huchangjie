@@ -9,8 +9,8 @@ class Constant {
   static bool isUnitTest  = false;
   
   static const String data = 'data';
-  static const String message = 'message';
-  static const String code = 'code';
+  static const String message = 'msg';
+  static const String status = 'status';
   
   static const String keyGuide = 'keyGuide';
   static const String phone = 'phone';

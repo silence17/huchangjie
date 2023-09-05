@@ -56,6 +56,10 @@ dependencies:
   dio: ^5.2.1
   # json生成
   json_annotation: ^4.4.0
+  # 路由框架 https://github.com/theyakka/fluro
+  fluro: ^2.0.5
+  # WebView插件 https://github.com/flutter/packages/tree/main/packages/webview_flutter
+  # webview_flutter: 4.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

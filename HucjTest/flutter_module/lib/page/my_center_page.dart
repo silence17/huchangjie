@@ -20,6 +20,7 @@ class MyCenter extends StatefulWidget {
 class _MyCenter extends State<MyCenter>
     with BasePageMixin<MyCenter, MyCenterPresenter>
     implements MyCenterContact {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -289,7 +290,7 @@ class _MyCenter extends State<MyCenter>
                         margin: const EdgeInsets.symmetric(vertical: 5),
                         height: 29,
                         child: Text(
-                          "${provider.curDayTotalAmount}",
+                          "${provider?.curDayTotalAmount}",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.justify,

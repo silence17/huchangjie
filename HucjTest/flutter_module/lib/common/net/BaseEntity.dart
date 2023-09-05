@@ -6,7 +6,7 @@ class BaseEntity<T> {
   BaseEntity(this.status, this.msg, this.data);
 
   BaseEntity.fromJson(Map<String, dynamic> json) {
-    status = json[Constant.code] as int?;
+    status = json[Constant.status] as int?;
     msg = json[Constant.message] as String;
     if (json.containsKey(Constant.data)) {
       data = _generateOBJ(json[Constant.data] as Object?);

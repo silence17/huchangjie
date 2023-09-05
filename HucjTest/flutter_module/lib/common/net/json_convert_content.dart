@@ -1,4 +1,3 @@
-import 'package:flutter_module/common/net/i_net_json_2_bean.dart';
 import 'package:flutter_module/common/utils/log_utils.dart';
 
 import '../../bean/order_info_bean.dart';
@@ -73,26 +72,28 @@ class JsonConvert {
     return null;
   }
 
+  /*
+   * 解析object json
+   */
   //Go back to a single instance by type
   static M? _fromJsonSingle<M>(Map<String, dynamic> json) {
     final String type = M.toString();
-    // if(type == (BankEntity).toString()){
-    // 	return BankEntity.fromJson(json) as M;
-    // }
+    if (type == (OrderInfoBean).toString()) {
+      return OrderInfoBean.fromJson(json) as M;
+    }
 
-    print("$type not found");
-
+    Log.e("$type not found");
     return null;
   }
 
   //list is returned by type
   static M? _getListChildType<M>(List<dynamic> data) {
-    if(<OrderInfoBean>[] is M){
-      return data.map<OrderInfoBean>((e) => OrderInfoBean.fromJson(e)).toList() as M;
+    if (<OrderInfoBean>[] is M) {
+      return data.map<OrderInfoBean>((e) => OrderInfoBean.fromJson(e)).toList()
+          as M;
     }
 
-    print("${M.toString()} not found");
-
+    Log.e("${M.toString()} not found");
     return null;
   }
 
@@ -102,10 +103,8 @@ class JsonConvert {
     }
     if (json is List) {
       return _getListChildType<M>(json);
-    } else if (M is INetJson2Bean<M>) {
-      return (M as INetJson2Bean<M>).fromJson(json);
     } else {
-      return json;
+      return _fromJsonSingle<M>(json as Map<String, dynamic>);
     }
   }
 }

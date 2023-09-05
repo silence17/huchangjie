@@ -104,7 +104,7 @@ class DioUtil {
       final Map<String, dynamic> map = json.decode(responseStr);
       return BaseEntity<T>.fromJson(map);
     } catch (e) {
-      debugPrint(e.toString());
+      Log.e(e.toString());
       return BaseEntity<T>(ExceptionHandle.parse_error, '数据解析错误！', null);
     }
   }
@@ -160,7 +160,7 @@ class DioUtil {
         //通过Stream的asBroadcastStream()或StreamController的broadcast将单订阅的流转换为多订阅流
         .asBroadcastStream()
         .listen((result) {
-      if (result.status == 0) {
+      if (result.status == 1) {
         if (onSuccess != null) {
           onSuccess(result.data);
         }

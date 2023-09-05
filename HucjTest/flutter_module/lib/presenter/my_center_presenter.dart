@@ -14,7 +14,7 @@ import '../contact/my_center_contact.dart';
 
 class MyCenterPresenter extends BasePagePresenter<MyCenterContact> {
   UserInfoBean userInfo = UserInfoBean.origin();
-  OrderInfoBean orderInfo = OrderInfoBean();
+  OrderInfoBean orderInfo = OrderInfoBean.only();
 
   @override
   void initState() {
@@ -30,11 +30,16 @@ class MyCenterPresenter extends BasePagePresenter<MyCenterContact> {
       var options = Options();
       options.contentType = Headers.jsonContentType;
       //发起网络请求
-      asyncRequestNetwork(Method.get,
+      asyncRequestNetwork<OrderInfoBean>(Method.get,
           url: ApiUlr.crm_order_info,
           queryParameters: params,
           onSuccess: (data) {
-            showToast(data.toString());
+            if (data == null) return;
+
+            orderInfo = data;
+            orderInfo.notify();
+            var prompt = data.lastDayTotalAmount.toString();
+            showToast(prompt ?? "请求成功");
           },
           onError: (code, msg) => {showToast(msg)});
     });

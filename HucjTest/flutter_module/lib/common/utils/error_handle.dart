@@ -11,7 +11,8 @@ class ExceptionHandle {
   static const int not_found = 404;
 
   static const int net_error = 1000;
-  static const int parse_error = 1001;
+  //json解析异常
+  static const int parse_error = -2;
   static const int socket_error = 1002;
   static const int http_error = 1003;
   static const int connect_timeout_error = 1004;

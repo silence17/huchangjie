@@ -3,6 +3,7 @@ import 'package:flutter_module/common/mvp/base_presenter.dart';
 import 'package:flutter_module/common/mvp/mvps.dart';
 import 'package:flutter_module/common/mvp/progress_dialog.dart';
 
+import '../routers/fluro_navigator.dart';
 import '../utils/log_utils.dart';
 
 
@@ -23,7 +24,7 @@ mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter>
   void closeProgress() {
     if (mounted && _isShowDialog) {
       _isShowDialog = false;
-      //NavigatorUtils.goBack(context);
+      NavigatorUtils.goBack(context);
     }
   }
 
